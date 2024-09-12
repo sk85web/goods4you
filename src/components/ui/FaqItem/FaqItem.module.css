@@ -1,0 +1,44 @@
+.faqButton {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid var(--white);
+  background-color: transparent;
+  color: var(--white);
+  font-family: 'Jost';
+  font-size: 24px;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+  cursor: pointer;
+}
+
+.question {
+  font-weight: 400;
+}
+
+.open {
+  border-bottom: none;
+}
+
+.answer {
+  padding-bottom: 25px;
+  line-height: 26px;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--white);
+  border-bottom: 1px solid var(--white);
+  max-height: 0;
+}
+
+.answerOpen {
+  animation: toOpen 0.5s linear forwards;
+}
+
+@keyframes toOpen {
+  from {
+    max-height: 0;
+  }
+  to {
+    max-height: 300px;
+  }
+}

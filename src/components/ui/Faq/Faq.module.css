@@ -1,0 +1,18 @@
+.faq {
+  background-color: var(--violet);
+  text-align: left;
+}
+
+.container {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 60px 0;
+}
+
+.title {
+  border-bottom: 1px solid var(--white);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 36px;
+  padding-bottom: 22px;
+}

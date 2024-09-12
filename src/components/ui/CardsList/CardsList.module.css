@@ -1,0 +1,9 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
+  padding: 0;
+  list-style: none;
+  row-gap: 22px;
+  column-gap: 35px;
+  margin-bottom: 47px;
+}
