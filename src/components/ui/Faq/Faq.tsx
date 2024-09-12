@@ -1,5 +1,5 @@
 import styles from './Faq.module.css';
-import FaqAccordion from '../FaqList/FaqAccordion';
+import FaqAccordion from '../FaqAccordion/FaqAccordion';
 
 const faqs = [
   {
