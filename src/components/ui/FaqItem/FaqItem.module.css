@@ -35,10 +35,10 @@
 }
 
 @keyframes toOpen {
-  from {
+  0% {
     max-height: 0;
   }
-  to {
+  100% {
     max-height: 300px;
   }
 }

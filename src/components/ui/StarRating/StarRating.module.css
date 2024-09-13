@@ -1,0 +1,5 @@
+.stars-container {
+  display: flex;
+  gap: 9px;
+  list-style: none;
+}
