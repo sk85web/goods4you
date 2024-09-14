@@ -1,0 +1,59 @@
+.common {
+  width: 356px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.countBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.countTitle {
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--gray-500);
+}
+
+.countValue {
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--gray-900);
+}
+
+.priceTitle {
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--gray-500);
+}
+
+.priceValue {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--gray-900);
+}
+
+.resultBlock {
+  margin-top: 10px;
+}
+
+.resultTitle {
+  font-weight: 500;
+  font-size: 24px;
+  color: var(--gray-500);
+}
+
+.resultValue {
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--gray-900);
+}

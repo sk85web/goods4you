@@ -17,3 +17,5 @@ export interface IFaq {
   answer: string;
   id: number;
 }
+
+export type CartFormProps = Pick<ICard, 'title' | 'price' | 'image' | 'id'>;

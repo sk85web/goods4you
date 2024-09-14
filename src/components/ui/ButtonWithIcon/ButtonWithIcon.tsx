@@ -5,7 +5,7 @@ import styles from './ButtonWithIcon.module.css';
 interface ButtonWithIconProps {
   ariaLabel: string;
   icon: React.ReactNode;
-  onClick: () => void;
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   isDisabled?: boolean;
 }
 

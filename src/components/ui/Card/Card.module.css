@@ -24,6 +24,7 @@
 .image {
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .image img {
@@ -82,6 +83,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  cursor: pointer;
 }
 
 .card-description {

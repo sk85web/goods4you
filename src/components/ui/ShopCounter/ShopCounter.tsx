@@ -6,8 +6,8 @@ import styles from './ShopCounter.module.css';
 
 interface ShopCounterProps {
   count: number;
-  removeProduct: () => void;
-  addProduct: () => void;
+  removeProduct: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  addProduct: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const ShopCounter: React.FC<ShopCounterProps> = ({
@@ -21,6 +21,7 @@ const ShopCounter: React.FC<ShopCounterProps> = ({
         ariaLabel="Remove one product"
         onClick={removeProduct}
         icon={<MinusIcon />}
+        isDisabled={count === 0}
       />
       <span className={styles.count}>{count} item</span>
       <ButtonWithIcon

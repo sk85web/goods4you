@@ -1,5 +1,4 @@
 import { Helmet } from 'react-helmet';
-// import { useParams } from 'react-router-dom';
 
 import styles from './ProductDetails.module.css';
 import imagePlaceholder from '../../assets/image.png';
@@ -8,8 +7,6 @@ import ProductInfo from '../../components/ui/ProductInfo/ProductInfo';
 import Galery from '../../components/ui/Galery/Galery';
 
 const ProductDetails = () => {
-  // const { id = '' } = useParams<{ id: string }>();
-
   const card: ICard = {
     image: imagePlaceholder,
     title: 'Essence Mascara Lash Princess',
