@@ -27,19 +27,19 @@
   font-weight: 600;
   font-size: 16px;
   color: var(--white);
-  border-bottom: 1px solid var(--white);
   max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s linear, padding-bottom 0.3s linear,
+    border-bottom 0.3s linear;
 }
 
 .answerOpen {
-  animation: toOpen 0.5s linear forwards;
+  max-height: 300px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid var(--white);
 }
 
-@keyframes toOpen {
-  0% {
-    max-height: 0;
-  }
-  100% {
-    max-height: 300px;
-  }
+.answerClose {
+  max-height: 0;
+  padding-bottom: 0;
 }

@@ -26,7 +26,7 @@ const HeaderNav = () => {
           </NavLink>
         </li>
         <li className={styles['nav-item']}>
-          <NavLink to="/login" aria-label="login">
+          <NavLink to="#" aria-label="login">
             Johnson Smith
           </NavLink>
         </li>
