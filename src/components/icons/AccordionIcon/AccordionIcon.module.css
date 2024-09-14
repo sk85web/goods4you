@@ -6,4 +6,5 @@
 .close {
   transform: rotate(45deg);
   transition: transform 0.5s linear;
+  transform-origin: left;
 }

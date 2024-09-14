@@ -12,12 +12,12 @@
   transition: all 0.2s linear;
 }
 
-.card-description {
+.card-title {
   text-overflow: ellipsis;
   overflow: hidden;
 }
 
-.card:hover .card-description {
+.card:hover .card-title {
   text-decoration: underline;
 }
 
@@ -25,6 +25,7 @@
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  margin-bottom: 10px;
 }
 
 .image img {
@@ -86,7 +87,7 @@
   cursor: pointer;
 }
 
-.card-description {
+.card-title {
   font-size: 16px;
   font-weight: 700;
 }

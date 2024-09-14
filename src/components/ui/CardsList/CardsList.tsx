@@ -1,9 +1,9 @@
-import { ICard } from '../../../types/types';
+import { IShortCard } from '../../../types/types';
 import Card from '../Card/Card';
 import styles from './CardsList.module.css';
 
 interface CardsListProps {
-  cards: ICard[];
+  cards: IShortCard[];
 }
 
 const CardsList: React.FC<CardsListProps> = ({ cards }) => {

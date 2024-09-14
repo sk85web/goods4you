@@ -1,6 +1,6 @@
 .container {
   display: flex;
-  width: 188px;
+  min-width: 188px;
   align-items: center;
   flex-grow: 2;
 }

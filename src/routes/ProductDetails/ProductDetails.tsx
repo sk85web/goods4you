@@ -1,26 +1,13 @@
 import { Helmet } from 'react-helmet';
 
 import styles from './ProductDetails.module.css';
-import imagePlaceholder from '../../assets/image.png';
-import { ICard } from '../../types/types';
+import data from '../../api/products.json';
 import ProductInfo from '../../components/ui/ProductInfo/ProductInfo';
 import Galery from '../../components/ui/Galery/Galery';
+import imageSrc from '../../assets/main.png';
 
 const ProductDetails = () => {
-  const card: ICard = {
-    image: imagePlaceholder,
-    title: 'Essence Mascara Lash Princess',
-    description:
-      'The Essence Mascara Lash Princess is a popular mascara known for its volumizing and lengthening effects. Achieve dramatic lashes with this long-lasting and cruelty-free formula.',
-    price: 9.99,
-    discount: 14.5,
-    id: '1',
-    rating: '4',
-    category: 'electronics, selfie accessories',
-    quantity: 5,
-    waranty: 1,
-    ship: 1,
-  };
+  const card = { ...data[0], image: imageSrc, price: '9.99' };
 
   return (
     <>
@@ -34,7 +21,7 @@ const ProductDetails = () => {
       <div>
         <div className={styles.container}>
           <div className={styles.content}>
-            <Galery card={card} imagePlaceholder={imagePlaceholder} />
+            <Galery card={card} />
             <ProductInfo card={card} />
           </div>
         </div>

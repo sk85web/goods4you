@@ -1,17 +1,10 @@
 import styles from './Catalog.module.css';
 import SearchInput from '../SearchInput/SearchInput';
 import CardsList from '../CardsList/CardsList';
-import imagePlaceholder from '../../../assets/image.png';
 import Button from '../Button/Button';
+import cards from '../../../api/products.json';
 
 const Catalog = () => {
-  const cards = new Array(12).fill({
-    image: imagePlaceholder,
-    description: 'Essence Mascara Lash Princess',
-    price: 110,
-    id: '1', // потом заменить на разные id
-  });
-
   const handleClick = () => {
     console.log('Show more');
   };

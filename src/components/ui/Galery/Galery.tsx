@@ -1,17 +1,12 @@
 import styles from './Galery.module.css';
 import { ICard } from '../../../types/types';
 
-const Galery = ({
-  card,
-  imagePlaceholder,
-}: {
-  card: ICard;
-  imagePlaceholder: string;
-}) => {
-  const allImages = new Array(6).fill({
-    image: imagePlaceholder,
-    id: 1,
+const Galery = ({ card }: { card: ICard }) => {
+  const allImages: { image: string; id: string }[] = new Array(6).fill({
+    image: card.image,
+    id: card.id,
   });
+  console.log(card.image);
   return (
     <div className={styles.galery}>
       <div className={styles['main-photo']}>

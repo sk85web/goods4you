@@ -1,13 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 
-import { ICard } from '../../../types/types';
+import { IShortCard } from '../../../types/types';
 import styles from './Card.module.css';
 import CartIcon from '../../icons/CartIcon/CartIcon';
 import ButtonWithIcon from '../ButtonWithIcon/ButtonWithIcon';
 import { useState } from 'react';
 import ShopCounter from '../ShopCounter/ShopCounter';
 
-const Card: React.FC<ICard> = ({ id, description, image, price }) => {
+const Card: React.FC<IShortCard> = ({ id, title, image, price }) => {
   const [count, setCount] = useState(0);
   const navigate = useNavigate();
 
@@ -17,16 +17,15 @@ const Card: React.FC<ICard> = ({ id, description, image, price }) => {
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation();
-    console.log('click');
     setCount((prev) => prev + 1);
   };
 
-  const removeProduct = (e: React.MouseEvent) => {
+  const decreaseQuantity = (e: React.MouseEvent) => {
     e.stopPropagation();
     setCount((prev) => prev - 1);
   };
 
-  const addProduct = (e: React.MouseEvent) => {
+  const increaseQuantity = (e: React.MouseEvent) => {
     e.stopPropagation();
     setCount((prev) => prev + 1);
   };
@@ -34,11 +33,11 @@ const Card: React.FC<ICard> = ({ id, description, image, price }) => {
   return (
     <div className={styles.card} onClick={goToPtoduct}>
       <div className={styles.image}>
-        <img src={image} alt={description} />
+        <img src={image} alt={title} />
       </div>
       <div className={styles.content}>
         <div className={styles['card-info']}>
-          <h3 className={styles['card-description']}>{description}</h3>
+          <h3 className={styles['card-title']}>{title}</h3>
           <span className={styles['card-price']}>${price}</span>
         </div>
         {count === 0 ? (
@@ -50,8 +49,8 @@ const Card: React.FC<ICard> = ({ id, description, image, price }) => {
         ) : (
           <ShopCounter
             count={count}
-            removeProduct={removeProduct}
-            addProduct={addProduct}
+            decreaseQuantity={decreaseQuantity}
+            increaseQuantity={increaseQuantity}
           />
         )}
       </div>

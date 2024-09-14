@@ -2,13 +2,13 @@ import styles from './CartForm.module.css';
 import CartItem from '../CartItem/CartItem';
 import { CartFormProps } from '../../../types/types';
 
-const CartForm = ({ cards }: { cards: CartFormProps[] }) => {
+const CartForm = ({ products }: { products: CartFormProps[] }) => {
   return (
     <div className={styles.container}>
       <ul className={styles.cartList}>
-        {cards.map((card) => (
-          <li key={card.id}>
-            <CartItem card={card} />
+        {products.map((product) => (
+          <li key={product.id}>
+            <CartItem product={product} />
           </li>
         ))}
       </ul>

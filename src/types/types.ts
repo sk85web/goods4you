@@ -2,8 +2,8 @@ export interface ICard {
   image: string;
   title: string;
   description: string;
-  price: number;
-  discount: number;
+  price: string;
+  discount: string;
   id: string;
   rating: string;
   category: string;
@@ -11,6 +11,8 @@ export interface ICard {
   waranty: number;
   ship: number;
 }
+
+export type IShortCard = Pick<ICard, 'title' | 'id' | 'image' | 'price'>;
 
 export interface IFaq {
   question: string;
