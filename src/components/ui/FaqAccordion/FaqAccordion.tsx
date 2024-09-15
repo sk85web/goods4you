@@ -1,6 +1,11 @@
-import { IFaq } from '../../../types/types';
 import FaqItem from '../FaqItem/FaqItem';
 import styles from './FaqAccordion.module.css';
+
+export interface IFaq {
+  question: string;
+  answer: string;
+  id: number;
+}
 
 interface FaqAccordionProps {
   faqs: IFaq[];

@@ -4,32 +4,13 @@ import { useState, useEffect } from 'react';
 import styles from './HeaderNav.module.css';
 import CartIcon from '../../icons/CartIcon/CartIcon';
 import Burger from '../Burger/Burger';
-
-const toSection = (section: HTMLElement) => {
-  return section?.scrollIntoView({
-    behavior: 'smooth',
-    block: 'start',
-  });
-};
+import { scrollToSection, toSection } from '../../../utils/scrollToSection';
 
 const HeaderNav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const [targetSection, setTargetSection] = useState<string | null>(null);
-
-  const scrollToSection = (id: string) => {
-    const section = document.getElementById(id);
-
-    if (section) {
-      toSection(section);
-    } else {
-      setTargetSection(id);
-      if (location.pathname !== '/') {
-        navigate('/');
-      }
-    }
-  };
 
   useEffect(() => {
     if (targetSection && location.pathname === '/') {
@@ -61,7 +42,14 @@ const HeaderNav = () => {
         <li className={styles['nav-item']}>
           <div
             className={styles.navDiv}
-            onClick={() => scrollToSection('catalog')}
+            onClick={() =>
+              scrollToSection(
+                'catalog',
+                location.pathname,
+                setTargetSection,
+                navigate
+              )
+            }
             aria-label="catalog"
           >
             Catalog
@@ -70,7 +58,14 @@ const HeaderNav = () => {
         <li className={styles['nav-item']}>
           <div
             className={styles.navDiv}
-            onClick={() => scrollToSection('faq')}
+            onClick={() =>
+              scrollToSection(
+                'faq',
+                location.pathname,
+                setTargetSection,
+                navigate
+              )
+            }
             aria-label="faq"
           >
             FAQ
