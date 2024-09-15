@@ -16,10 +16,10 @@
 }
 
 .container {
-  max-width: 1180px;
+  max-width: 1190px;
   margin: 0 auto;
   border-top: 1px solid var(--white);
-  padding: 115px 0;
+  padding: 115px 5px;
 }
 
 .content {
@@ -29,7 +29,7 @@
 
 .title {
   font-weight: 400;
-  font-size: 36px;
+  font-size: clamp(28px, 4vw, 36px);
   line-height: 50px;
   margin-bottom: 30px;
 }
@@ -39,4 +39,22 @@
   font-size: 16px;
   line-height: 24px;
   margin-bottom: 30px;
+}
+
+@media screen and (max-width: 1300px) {
+  .hero:before {
+    font-size: clamp(50px, 10vw, 200px);
+    right: 30px;
+    top: 0;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .content {
+    text-align: center;
+  }
+
+  .hero:before {
+    left: 0;
+  }
 }

@@ -43,13 +43,13 @@
 
 .content a {
   text-decoration: none;
+  line-height: 22px;
 }
 
 .title {
   font-weight: 600;
   font-size: 16px;
   color: var(--gray-900);
-  line-height: 56px;
 }
 
 .title:hover {
@@ -59,6 +59,7 @@
 .price {
   font-weight: 400;
   font-size: 18px;
+  line-height: 26px;
 }
 
 .btnBlock {

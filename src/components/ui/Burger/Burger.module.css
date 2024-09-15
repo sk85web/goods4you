@@ -1,0 +1,61 @@
+.burger {
+  display: none;
+  margin: 10px;
+  width: 30px;
+  height: 20px;
+  background-color: transparent;
+  position: relative;
+  cursor: pointer;
+  z-index: 10;
+  border: none;
+  transition: all 0.2s linear;
+}
+
+.burger:hover {
+  transform: scale(1.1);
+  border-radius: 5px;
+}
+
+.burger:hover span {
+  background-color: var(--orange);
+}
+
+.burger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--white);
+  transition: all 0.2s;
+
+  position: absolute;
+  top: calc(50% - 1px);
+  left: 0;
+}
+
+.burger span:first-child {
+  top: 0;
+}
+.burger span:last-child {
+  top: auto;
+  bottom: 0;
+}
+
+.active span {
+  transform: scale(0);
+}
+
+.active span:first-child {
+  transform: rotate(-45deg);
+  top: calc(50% - 1px);
+}
+
+.active span:last-child {
+  transform: rotate(45deg);
+  top: calc(50% - 1px);
+}
+
+@media (max-width: 768px) {
+  .burger {
+    display: block;
+  }
+}
