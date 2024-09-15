@@ -1,12 +1,20 @@
 .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   gap: 24px;
   padding: 12px;
   border: 1px solid var(--gray-200);
   border-radius: 4px;
   background-color: var(--white);
+  -webkit-transition: background-color linear 0.2s;
+  -o-transition: background-color linear 0.2s;
   transition: background-color linear 0.2s;
   width: 688px;
 }
@@ -16,7 +24,11 @@
 }
 
 .infoBlock {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   gap: 7px;
   max-width: 362px;
@@ -40,8 +52,15 @@
 }
 
 .content {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
   align-items: flex-start;
 }
 
@@ -70,6 +89,8 @@
 }
 
 .btnBlock {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   gap: 48px;
 }
@@ -84,6 +105,7 @@
   cursor: pointer;
   color: var(--gray-500);
   font-size: 14px;
+  -o-transition: color 0.2s linear;
   transition: color 0.2s linear;
   -webkit-transition: color 0.2s linear;
 }
@@ -94,8 +116,10 @@
 
 @media screen and (max-width: 800px) {
   .container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
-    -webkit-flex-direction: column;
     max-width: 700px;
     width: 100%;
   }
@@ -103,10 +127,16 @@
 
 @media screen and (max-width: 460px) {
   .infoBlock {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
   }
 
   .btnBlock {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
   }
 }

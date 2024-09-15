@@ -1,22 +1,36 @@
 .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   text-align: center;
   background-color: var(--gray-100);
   border-radius: 6px;
   padding: 12px;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   -webkit-flex-wrap: wrap;
 }
 
 .prices {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 
 .price-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   padding: 0 20px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
   -webkit-flex-direction: column;
   border-right: 1px solid var(--gray-200);
@@ -38,9 +52,17 @@
 }
 
 .discount-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
   justify-content: flex-start;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-flex: 2;
+  -ms-flex-positive: 2;
   flex-grow: 2;
   -webkit-flex-grow: 2;
   padding-left: 30px;
@@ -54,7 +76,11 @@
 
 @media screen and (max-width: 560px) {
   .container {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     gap: 25px;
   }

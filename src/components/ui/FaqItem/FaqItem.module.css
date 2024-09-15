@@ -6,7 +6,11 @@
   color: var(--white);
   font-family: 'Jost';
   font-size: 24px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   padding: 20px 0;
   cursor: pointer;
@@ -30,6 +34,7 @@
   color: var(--white);
   max-height: 0;
   overflow: hidden;
+  -o-transition: all 0.3s linear;
   transition: all 0.3s linear;
   -webkit-transition: all 0.3s linear;
 }

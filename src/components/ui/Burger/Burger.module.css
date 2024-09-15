@@ -8,10 +8,14 @@
   cursor: pointer;
   z-index: 10;
   border: none;
+  -webkit-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
   transition: all 0.2s linear;
 }
 
 .burger:hover {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
   transform: scale(1.1);
   border-radius: 5px;
 }
@@ -25,6 +29,7 @@
   width: 100%;
   height: 2px;
   background-color: var(--white);
+  -o-transition: all 0.2s;
   transition: all 0.2s;
   -webkit-transition: all 0.2s;
 
@@ -42,15 +47,21 @@
 }
 
 .active span {
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
   transform: scale(0);
 }
 
 .active span:first-child {
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
   transform: rotate(-45deg);
   top: calc(50% - 1px);
 }
 
 .active span:last-child {
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
   transform: rotate(45deg);
   top: calc(50% - 1px);
 }

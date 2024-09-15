@@ -1,8 +1,11 @@
 ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   list-style: none;
   padding: 0;
   position: relative;
+  -o-transition: 0.2s linear all;
   transition: 0.2s linear all;
   -webkit-transition: 0.2s linear all;
 }

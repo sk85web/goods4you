@@ -1,4 +1,6 @@
 .stars-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   gap: 9px;
   list-style: none;
