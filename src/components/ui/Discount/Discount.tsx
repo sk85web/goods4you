@@ -13,11 +13,7 @@ const Discount: React.FC<DiscountProps> = ({ price, discount }) => {
     <div className={styles.container}>
       <div className={styles.prices}>
         <div className={styles['price-info']}>
-          <span className={styles['final-price']}>
-            {/* remove comment in real data  */}
-            {/* ${(+(+price - (+price * +discount) / 100)).toFixed(2)} */}
-            $7.17
-          </span>
+          <span className={styles['final-price']}>$7.17</span>
           <span className={styles.price}>${price}</span>
         </div>
       </div>

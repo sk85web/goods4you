@@ -6,7 +6,6 @@
   background-color: var(--gray-100);
   border-radius: 6px;
   padding: 12px;
-  margin-top: 7px;
   flex-wrap: wrap;
   -webkit-flex-wrap: wrap;
 }

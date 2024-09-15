@@ -12,25 +12,25 @@ const FaqItem: React.FC<IFaq> = ({ id, question, answer }) => {
   };
 
   return (
-    <div className={styles.faqItem}>
+    <article className={styles.faqItem}>
       <button
         onClick={toggleFaq}
         aria-expanded={isOpen}
-        aria-controls={`faq-answer-${id}`}
+        aria-labelledby={`faq-answer-${id}`}
         className={`${styles.faqButton} ${isOpen ? styles.open : ''}`}
       >
-        <span className={styles.question}>{question}</span>
+        <h3 className={styles.question}>{question}</h3>
         <CloseIcon isClose={isOpen} />
       </button>
-      <div
+      <p
         id={`faq-answer-${id}`}
         className={`${styles.answer} ${
           isOpen ? styles.answerOpen : styles.answerClose
         }`}
       >
         {answer}
-      </div>
-    </div>
+      </p>
+    </article>
   );
 };
 

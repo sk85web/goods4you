@@ -7,11 +7,11 @@ interface FaqAccordionProps {
 
 const FaqAccordion: React.FC<FaqAccordionProps> = ({ faqs }) => {
   return (
-    <div>
+    <section>
       {faqs.map((faq) => (
         <FaqItem key={faq.id} {...faq} />
       ))}
-    </div>
+    </section>
   );
 };
 

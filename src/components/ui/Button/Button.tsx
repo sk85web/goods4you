@@ -4,8 +4,6 @@ import styles from './Button.module.css';
 
 interface ButtonProps {
   ariaLabel: string;
-  // ariaExpanded: string;
-  // ariaControl: string;
   children: string;
   onClick: () => void;
 }

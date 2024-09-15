@@ -53,7 +53,7 @@ const CartItem = ({ product }: { product: CartFormProps }) => {
             />
             <div className={styles.deleteBtnParent}>
               <ButtonLink
-                ariaLabel="Delete product"
+                ariaLabel="Delete product from cart"
                 onClick={removeFromCart}
                 children="Delete"
               />

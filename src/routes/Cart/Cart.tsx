@@ -15,13 +15,11 @@ const Cart = () => {
           content="Any products from famous brands with worldwide delivery"
         />
       </Helmet>
-      <div>
-        <div className={styles.container}>
-          <h1 className={styles.title}>My cart</h1>
-          <div className={styles.content}>
-            <CartForm products={products} />
-            <CartTotal />
-          </div>
+      <div className={styles.container}>
+        <h1 className={styles.title}>My cart</h1>
+        <div className={styles.content}>
+          <CartForm products={products} />
+          <CartTotal />
         </div>
       </div>
     </>
