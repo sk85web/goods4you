@@ -1,6 +1,7 @@
 .galery {
   display: flex;
   flex-direction: column;
+  -webkit-flex-direction: column;
   gap: 10px;
   width: 520px;
 }
@@ -16,6 +17,7 @@
   height: 100%;
   width: 100%;
   object-fit: cover;
+  -o-object-fit: cover;
 }
 
 .slider {
@@ -29,8 +31,10 @@
   height: 70px;
   width: 70px;
 }
+
 .slider > li img {
   object-fit: cover;
+  -o-object-fit: cover;
   width: 100%;
   display: block;
   height: auto;

@@ -5,6 +5,7 @@
   color: var(--gray-500);
   font-size: 14px;
   transition: color 0.2s linear;
+  -webkit-transition: color 0.2s linear;
 }
 
 .button:not(.disabled):hover {

@@ -14,4 +14,10 @@ export interface ICard {
 
 export type IShortCard = Pick<ICard, 'title' | 'id' | 'image' | 'price'>;
 
+export interface IFaq {
+  question: string;
+  answer: string;
+  id: number;
+}
+
 export type CartFormProps = Pick<ICard, 'title' | 'price' | 'image' | 'id'>;

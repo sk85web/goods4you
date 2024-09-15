@@ -2,6 +2,7 @@
   width: 356px;
   display: flex;
   flex-direction: column;
+  -webkit-flex-direction: column;
   gap: 10px;
 }
 
@@ -13,6 +14,7 @@
 .countBlock {
   display: flex;
   flex-direction: column;
+  -webkit-flex-direction: column;
   gap: 15px;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--gray-200);

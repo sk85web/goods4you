@@ -2,6 +2,7 @@
   text-align: left;
   display: flex;
   flex-direction: column;
+  -webkit-flex-direction: column;
   gap: 24px;
 }
 
@@ -49,6 +50,7 @@
 .seconaryText {
   display: flex;
   flex-direction: column;
+  -webkit-flex-direction: column;
   text-align: left;
   gap: 12px;
   font-weight: 400;

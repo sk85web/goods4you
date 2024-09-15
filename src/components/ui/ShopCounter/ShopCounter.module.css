@@ -3,6 +3,7 @@
   min-width: 188px;
   align-items: center;
   flex-grow: 2;
+  -webkit-flex-grow: 2;
 }
 
 .count {
@@ -10,4 +11,5 @@
   font-weight: 400;
   font-size: 14px;
   flex-grow: 2;
+  -webkit-flex-grow: 2;
 }

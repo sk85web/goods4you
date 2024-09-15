@@ -19,6 +19,7 @@
   font-size: 14px;
   font-weight: 600;
   transition: all 0.2s linear;
+  -webkit-transition: all 0.2s linear;
 }
 
 .navDiv:hover,
