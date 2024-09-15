@@ -42,17 +42,37 @@ const HeaderNav = () => {
     setMenuOpen(false);
   }, [location.pathname, targetSection]);
 
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [menuOpen]);
+
   return (
     <nav className="nav">
       <Burger onClick={() => setMenuOpen(!menuOpen)} isOpen={menuOpen} />
       <ul className={`${styles['nav-list']} ${menuOpen ? styles.active : ''}`}>
         <li className={styles['nav-item']}>
-          <div onClick={() => scrollToSection('catalog')} aria-label="catalog">
+          <div
+            className={styles.navDiv}
+            onClick={() => scrollToSection('catalog')}
+            aria-label="catalog"
+          >
             Catalog
           </div>
         </li>
         <li className={styles['nav-item']}>
-          <div onClick={() => scrollToSection('faq')} aria-label="faq">
+          <div
+            className={styles.navDiv}
+            onClick={() => scrollToSection('faq')}
+            aria-label="faq"
+          >
             FAQ
           </div>
         </li>

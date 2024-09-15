@@ -1,0 +1,13 @@
+ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  position: relative;
+  transition: 0.2s linear all;
+}
+
+li img {
+  object-fit: cover;
+  width: 70px;
+  height: 70px;
+}

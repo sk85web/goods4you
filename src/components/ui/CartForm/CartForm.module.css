@@ -10,3 +10,9 @@
   flex-direction: column;
   gap: 6px;
 }
+
+@media screen and (max-width: 510px) {
+  .container {
+    padding: 15px;
+  }
+}

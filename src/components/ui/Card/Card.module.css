@@ -31,6 +31,8 @@
 .image img {
   width: 100%;
   display: block;
+  height: auto;
+  max-width: 100%;
 }
 
 .card .image:after {

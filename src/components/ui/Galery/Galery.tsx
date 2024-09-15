@@ -1,5 +1,7 @@
 import styles from './Galery.module.css';
 import { ICard } from '../../../types/types';
+import Slider from '../Slider/Slider';
+import secondaryPhoto from '../../../assets/photo.png';
 
 const Galery = ({ card }: { card: ICard }) => {
   const allImages: { image: string; id: string }[] = new Array(6).fill({
@@ -15,10 +17,13 @@ const Galery = ({ card }: { card: ICard }) => {
       <ul className={styles.slider}>
         {allImages.map((img) => (
           <li key={img.id}>
-            <img src={img.image} alt="secondary photo" />
+            <img src={secondaryPhoto} alt="secondary photo" />
           </li>
         ))}
       </ul>
+      <div className={styles.miniSlider}>
+        <Slider />
+      </div>
     </div>
   );
 };

@@ -8,8 +8,12 @@
   list-style: none;
 }
 
+.navDiv {
+  cursor: pointer;
+}
+
 .nav-item a,
-.nav-item div {
+.navDiv {
   color: var(--white);
   text-decoration: none;
   font-size: 14px;
@@ -17,6 +21,7 @@
   transition: all 0.2s linear;
 }
 
+.navDiv:hover,
 .nav-item a:hover {
   color: var(--white-hover);
   text-decoration: underline;

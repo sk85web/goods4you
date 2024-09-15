@@ -42,7 +42,7 @@ html {
 
 body {
   height: 100%;
-  font-family: 'Jost';
+  font-family: 'Jost', sans-serif;
   font-weight: 400;
   margin: 0 auto;
   -webkit-tap-highlight-color: transparent;

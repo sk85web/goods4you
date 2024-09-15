@@ -42,12 +42,20 @@ const FooterNav = () => {
     <nav className="nav">
       <ul className={styles['nav-list']}>
         <li className={styles['nav-item']}>
-          <div onClick={() => scrollToSection('catalog')} aria-label="catalog">
+          <div
+            className={styles.navDiv}
+            onClick={() => scrollToSection('catalog')}
+            aria-label="catalog"
+          >
             Catalog
           </div>
         </li>
         <li className={styles['nav-item']}>
-          <div onClick={() => scrollToSection('faq')} aria-label="faq">
+          <div
+            className={styles.navDiv}
+            onClick={() => scrollToSection('faq')}
+            aria-label="faq"
+          >
             FAQ
           </div>
         </li>

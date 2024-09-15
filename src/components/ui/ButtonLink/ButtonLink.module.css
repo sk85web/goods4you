@@ -7,6 +7,11 @@
   transition: color 0.2s linear;
 }
 
-.button:hover {
+.button:not(.disabled):hover {
   color: var(--gray-900);
+}
+
+:disabled {
+  cursor: not-allowed;
+  color: var(--gray-200);
 }

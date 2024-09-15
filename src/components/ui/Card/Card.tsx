@@ -33,7 +33,12 @@ const Card: React.FC<IShortCard> = ({ id, title, image, price }) => {
   return (
     <div className={styles.card} onClick={goToPtoduct}>
       <div className={styles.image}>
-        <img src={image} alt={title} />
+        <img
+          src={image}
+          alt={title}
+          srcSet={`${image} 1440w`}
+          sizes="(max-width: 1440px) 100vw, 1440px"
+        />
       </div>
       <div className={styles.content}>
         <div className={styles['card-info']}>

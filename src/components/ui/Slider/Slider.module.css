@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.sliderWrapper {
+  width: 70px;
+  overflow: hidden;
+}
