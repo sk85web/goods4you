@@ -1,10 +1,14 @@
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+
+import { scrollToSection } from '../../../utils/scrollToSection';
 import Button from '../Button/Button';
 import styles from './Hero.module.css';
 
 const Hero = () => {
-  const handleClick = () => {
-    console.log('go to shopping');
-  };
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [targetSection, setTargetSection] = useState<string>('catalog');
 
   return (
     <section className={styles.hero}>
@@ -17,7 +21,17 @@ const Hero = () => {
             We sell smartphones, laptops, clothes, shoes
             <br /> and many other products at low prices
           </p>
-          <Button ariaLabel="go to shopping" onClick={handleClick}>
+          <Button
+            ariaLabel="go to shopping"
+            onClick={() =>
+              scrollToSection(
+                targetSection,
+                location.pathname,
+                setTargetSection,
+                navigate
+              )
+            }
+          >
             Go to shopping
           </Button>
         </div>
