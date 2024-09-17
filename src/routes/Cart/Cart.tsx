@@ -9,14 +9,14 @@ import { useEffect } from 'react';
 import { fetchCartsByUserId } from '../../api/requests/fetchCartsByUserId';
 
 const Cart = () => {
-  const hardCodeId = '6';
+  const hardCodedId = '6';
   const dispatch = useDispatch<AppDispatch>();
   const { cart, loading, error } = useSelector(
     (state: RootState) => state.cart
   );
 
   useEffect(() => {
-    dispatch(fetchCartsByUserId(hardCodeId));
+    dispatch(fetchCartsByUserId(hardCodedId));
   }, [dispatch]);
 
   if (loading) return <div className={styles.loading}>Loading...</div>;

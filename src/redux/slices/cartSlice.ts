@@ -5,12 +5,14 @@ import { fetchCartsByUserId } from '../../api/requests/fetchCartsByUserId';
 
 interface InitialStateProps {
   cart: ICart | null;
+  carts: ICart[] | null;
   loading: boolean;
   error: string | null;
 }
 
 const initialState: InitialStateProps = {
   cart: null,
+  carts: null,
   loading: true,
   error: null,
 };
@@ -28,6 +30,7 @@ export const cartSlice = createSlice({
       state.loading = false;
       if (action.payload.carts && action.payload.carts.length > 0) {
         state.cart = action.payload.carts[0];
+        state.carts = action.payload.carts;
       } else {
         state.cart = null;
       }
