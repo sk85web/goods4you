@@ -95,5 +95,4 @@ export interface FetchProductsData {
   total: number;
   skip: number;
   limit: number;
-  warrantyInformation: string;
 }
