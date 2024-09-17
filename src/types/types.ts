@@ -20,7 +20,7 @@ export interface IFaq {
   id: number;
 }
 
-export interface IProduct {
+export interface ICartProduct {
   id: 144;
   title: string;
   price: number;
@@ -33,7 +33,7 @@ export interface IProduct {
 
 export interface ICart {
   id: string;
-  products: IProduct[];
+  products: ICartProduct[];
   total: number;
   discountedTotal: number;
   userId: number;
@@ -46,4 +46,54 @@ export interface FetchCartsData {
   total: number;
   skip: number;
   limit: number;
+}
+
+export interface IProduct {
+  id: number;
+  title: string;
+  description: string;
+  category: string;
+  price: number;
+  discountPercentage: number;
+  rating: number;
+  stock: number;
+  tags: string[];
+  brand: string;
+  sku: string;
+  weight: number;
+  dimensions: {
+    width: number;
+    height: number;
+    depth: number;
+  };
+  warrantyInformation: string;
+  shippingInformation: string;
+  availabilityStatus: string;
+  reviews: Review[];
+  returnPolicy: string;
+  minimumOrderQuantity: number;
+  meta: {
+    createdAt: string;
+    updatedAt: string;
+    barcode: string;
+    qrCode: string;
+  };
+  images: string[];
+  thumbnail: string;
+}
+
+interface Review {
+  rating: number;
+  comment: string;
+  date: string;
+  reviewerName: string;
+  reviewerEmail: string;
+}
+
+export interface FetchProductsData {
+  products: IProduct[];
+  total: number;
+  skip: number;
+  limit: number;
+  warrantyInformation: string;
 }

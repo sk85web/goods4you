@@ -2,13 +2,13 @@ import { useState } from 'react';
 
 import ShopCounter from '../ShopCounter/ShopCounter';
 import styles from './CartItem.module.css';
-import { IProduct } from '../../../types/types';
+import { ICartProduct } from '../../../types/types';
 import ButtonWithIcon from '../ButtonWithIcon/ButtonWithIcon';
 import CartIcon from '../../icons/CartIcon/CartIcon';
 import ButtonLink from '../ButtonLink/ButtonLink';
 import { Link } from 'react-router-dom';
 
-const CartItem = ({ product }: { product: IProduct }) => {
+const CartItem = ({ product }: { product: ICartProduct }) => {
   const initialCount = product.quantity;
   const [count, setCount] = useState(initialCount);
   const [deletedProduct, setDeletedProduct] = useState(false);

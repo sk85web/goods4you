@@ -2,7 +2,6 @@ import styles from './Catalog.module.css';
 import SearchInput from '../SearchInput/SearchInput';
 import CardsList from '../CardsList/CardsList';
 import Button from '../Button/Button';
-import cards from '../../../api/products.json';
 
 const Catalog = () => {
   const handleClick = () => {
@@ -14,7 +13,7 @@ const Catalog = () => {
       <div className={styles.container}>
         <h2 className={styles.title}>Catalog</h2>
         <SearchInput />
-        <CardsList cards={cards} />
+        <CardsList />
         <Button ariaLabel="show more" onClick={handleClick}>
           Show more
         </Button>

@@ -1,13 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 
-import { IShortCard } from '../../../types/types';
+import { IProduct } from '../../../types/types';
 import styles from './Card.module.css';
 import CartIcon from '../../icons/CartIcon/CartIcon';
 import ButtonWithIcon from '../ButtonWithIcon/ButtonWithIcon';
 import { useState } from 'react';
 import ShopCounter from '../ShopCounter/ShopCounter';
 
-const Card: React.FC<IShortCard> = ({ id, title, image, price }) => {
+const Card: React.FC<IProduct> = ({ id, title, thumbnail, price }) => {
   const [count, setCount] = useState(0);
   const navigate = useNavigate();
 
@@ -34,9 +34,9 @@ const Card: React.FC<IShortCard> = ({ id, title, image, price }) => {
     <div className={styles.card} onClick={goToPtoduct}>
       <div className={styles.image}>
         <img
-          src={image}
+          src={thumbnail}
           alt={title}
-          srcSet={`${image} 1440w`}
+          srcSet={`${thumbnail} 1440w`}
           sizes="(max-width: 1440px) 100vw, 1440px"
         />
       </div>

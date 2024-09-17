@@ -1,15 +1,26 @@
-import { IShortCard } from '../../../types/types';
 import Card from '../Card/Card';
 import styles from './CardsList.module.css';
+import { productsApi } from '../../../redux/services/ProductsService';
 
-interface CardsListProps {
-  cards: IShortCard[];
-}
+const CardsList = () => {
+  const { data, isLoading, error } = productsApi.useFetchAllProductsQuery(12);
 
-const CardsList: React.FC<CardsListProps> = ({ cards }) => {
-  if (cards.length === 0) {
-    return <p className={styles.empty}>No Goods found.</p>;
-  }
+  const cards = data ? data.products : [];
+
+  if (isLoading)
+    return (
+      <div className={styles.loading}>
+        <h3>Loading...</h3>
+      </div>
+    );
+
+  if (error)
+    return (
+      <div className={styles.error}>
+        <h3>Uoops! Something went wrong</h3>
+      </div>
+    );
+
   return (
     <div className={styles.container}>
       {cards.map((card) => (
