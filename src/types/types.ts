@@ -20,4 +20,30 @@ export interface IFaq {
   id: number;
 }
 
-export type CartFormProps = Pick<ICard, 'title' | 'price' | 'image' | 'id'>;
+export interface IProduct {
+  id: 144;
+  title: string;
+  price: number;
+  quantity: number;
+  total: number;
+  discountPercentage: number;
+  discountedTotal: number;
+  thumbnail: string;
+}
+
+export interface ICart {
+  id: string;
+  products: IProduct[];
+  total: number;
+  discountedTotal: number;
+  userId: number;
+  totalProducts: number;
+  totalQuantity: number;
+}
+
+export interface FetchCartsData {
+  carts: ICart[];
+  total: number;
+  skip: number;
+  limit: number;
+}

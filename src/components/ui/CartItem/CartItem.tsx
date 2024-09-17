@@ -2,14 +2,15 @@ import { useState } from 'react';
 
 import ShopCounter from '../ShopCounter/ShopCounter';
 import styles from './CartItem.module.css';
-import { CartFormProps } from '../../../types/types';
+import { IProduct } from '../../../types/types';
 import ButtonWithIcon from '../ButtonWithIcon/ButtonWithIcon';
 import CartIcon from '../../icons/CartIcon/CartIcon';
 import ButtonLink from '../ButtonLink/ButtonLink';
 import { Link } from 'react-router-dom';
 
-const CartItem = ({ product }: { product: CartFormProps }) => {
-  const [count, setCount] = useState(1);
+const CartItem = ({ product }: { product: IProduct }) => {
+  const initialCount = product.quantity;
+  const [count, setCount] = useState(initialCount);
   const [deletedProduct, setDeletedProduct] = useState(false);
 
   const removeFromCart = () => {
@@ -28,7 +29,7 @@ const CartItem = ({ product }: { product: CartFormProps }) => {
     <div className={styles.container}>
       <div className={`${styles.infoBlock} ${deletedProduct && styles.blur}`}>
         <div className={styles.image}>
-          <img src={product.image} alt={product.title} />
+          <img src={product.thumbnail} alt={product.title} />
         </div>
         <div className={styles.content}>
           <Link to={`/product/${product.id}`}>
