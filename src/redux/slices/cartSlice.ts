@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { ICart } from '../../types/types';
-import { fetchCartsByUserId } from '../../api/requests/fetchCartsByUserId';
+import { fetchCartsByUserId } from '../services/fetchCartsByUserId';
 
 interface InitialStateProps {
   cart: ICart | null;

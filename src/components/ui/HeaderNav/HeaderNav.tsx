@@ -5,15 +5,23 @@ import styles from './HeaderNav.module.css';
 import CartIcon from '../../icons/CartIcon/CartIcon';
 import Burger from '../Burger/Burger';
 import { scrollToSection, toSection } from '../../../utils/scrollToSection';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../redux/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../../redux/store';
+import { fetchCartsByUserId } from '../../../redux/services/fetchCartsByUserId';
 
 const HeaderNav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const location = useLocation();
   const [targetSection, setTargetSection] = useState<string | null>(null);
   const { carts } = useSelector((state: RootState) => state.cart);
+
+  const hardCodedId = '6';
+
+  useEffect(() => {
+    dispatch(fetchCartsByUserId(hardCodedId));
+  }, [dispatch]);
 
   const isCartExist = !!carts && carts.length > 0;
 

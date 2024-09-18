@@ -6,7 +6,7 @@ import CartTotal from '../../components/ui/CartTotal/CartTotal';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
 import { useEffect } from 'react';
-import { fetchCartsByUserId } from '../../api/requests/fetchCartsByUserId';
+import { fetchCartsByUserId } from '../../redux/services/fetchCartsByUserId';
 
 const Cart = () => {
   const hardCodedId = '6';
