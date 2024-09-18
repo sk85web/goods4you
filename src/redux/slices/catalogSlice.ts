@@ -22,9 +22,14 @@ export const catalogSlice = createSlice({
     setSkip: (state, action: PayloadAction<number>) => {
       state.skip = action.payload;
     },
+    resetCatalog: (state) => {
+      state.loadedProducts = [];
+      state.skip = 0;
+    },
   },
 });
 
-export const { setLoadedProducts, setSkip } = catalogSlice.actions;
+export const { setLoadedProducts, setSkip, resetCatalog } =
+  catalogSlice.actions;
 
 export default catalogSlice.reducer;

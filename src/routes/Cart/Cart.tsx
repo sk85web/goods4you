@@ -1,13 +1,13 @@
 import { Helmet } from 'react-helmet';
+import { HelmetProvider } from 'react-helmet-async';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 import styles from './Cart.module.css';
 import CartForm from '../../components/ui/CartForm/CartForm';
 import CartTotal from '../../components/ui/CartTotal/CartTotal';
-import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
-import { useEffect } from 'react';
 import { fetchCartsByUserId } from '../../redux/services/fetchCartsByUserId';
-// import { HelmetProvider } from 'react-helmet-async';
 
 const Cart = () => {
   const hardCodedId = '6';
@@ -31,28 +31,28 @@ const Cart = () => {
     );
 
   return (
-    <>
-      {/* <HelmetProvider> */}
-      <Helmet>
-        <title>My cart | Goods4you</title>
-        <meta
-          name="description"
-          content="Any products from famous brands with worldwide delivery"
-        />
-      </Helmet>
-      <div className={styles.container}>
-        <h1 className={styles.title}>My cart</h1>
-        {cart ? (
-          <div className={styles.content}>
-            <CartForm />
-            <CartTotal />
-          </div>
-        ) : (
-          <h2 className={styles.emtyCart}>No items</h2>
-        )}
-      </div>
-      {/* </HelmetProvider> */}
-    </>
+    <HelmetProvider>
+      <>
+        <Helmet>
+          <title>My cart | Goods4you</title>
+          <meta
+            name="description"
+            content="Any products from famous brands with worldwide delivery"
+          />
+        </Helmet>
+        <div className={styles.container}>
+          <h1 className={styles.title}>My cart</h1>
+          {cart ? (
+            <div className={styles.content}>
+              <CartForm />
+              <CartTotal />
+            </div>
+          ) : (
+            <h2 className={styles.emtyCart}>No items</h2>
+          )}
+        </div>
+      </>
+    </HelmetProvider>
   );
 };
 

@@ -10,17 +10,3 @@
   column-gap: 35px;
   margin-bottom: 47px;
 }
-
-.loading,
-.error {
-  min-height: 850px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 48px;
-  color: var(--gray-900);
-}
-
-.error {
-  color: var(--orange);
-}

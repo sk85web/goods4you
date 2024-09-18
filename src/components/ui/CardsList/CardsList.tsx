@@ -7,7 +7,7 @@ interface CardsListProps {
   loadedCards: IProduct[];
 }
 
-const CardsList: React.FC<CardsListProps> = React.memo(({ loadedCards }) => {
+const CardsList: React.FC<CardsListProps> = ({ loadedCards }) => {
   return (
     <div className={styles.container}>
       {loadedCards.map((card) => (
@@ -15,6 +15,6 @@ const CardsList: React.FC<CardsListProps> = React.memo(({ loadedCards }) => {
       ))}
     </div>
   );
-});
+};
 
 export default CardsList;

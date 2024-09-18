@@ -7,7 +7,11 @@ import CardsList from '../CardsList/CardsList';
 import Button from '../Button/Button';
 import { productsApi } from '../../../redux/services/ProductsService';
 import { AppDispatch, RootState } from '../../../redux/store';
-import { setLoadedProducts, setSkip } from '../../../redux/slices/catalogSlice';
+import {
+  resetCatalog,
+  setLoadedProducts,
+  setSkip,
+} from '../../../redux/slices/catalogSlice';
 
 const Catalog = () => {
   const limit = 12;
@@ -16,15 +20,19 @@ const Catalog = () => {
     (state: RootState) => state.catalog
   );
 
-  const { data } = productsApi.useFetchAllProductsQuery({
+  const { data, isLoading, error } = productsApi.useFetchAllProductsQuery({
     limit,
     skip,
   });
 
   useEffect(() => {
+    dispatch(resetCatalog());
+  }, [dispatch]);
+
+  useEffect(() => {
     if (data && loadedProducts.length === 0) {
       dispatch(setLoadedProducts(data.products));
-      dispatch(setSkip(skip + limit));
+      dispatch(setSkip(limit + skip));
     }
   }, [dispatch, loadedProducts, data, skip]);
 
@@ -36,6 +44,20 @@ const Catalog = () => {
       dispatch(setSkip(skip + limit));
     }
   };
+
+  if (isLoading)
+    return (
+      <div className={styles.loading}>
+        <h3>Loading...</h3>
+      </div>
+    );
+
+  if (error)
+    return (
+      <div className={styles.error}>
+        <h3>Uoops! Something went wrong</h3>
+      </div>
+    );
 
   return (
     <section className={styles.catalog} id="catalog">
