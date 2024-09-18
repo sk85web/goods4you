@@ -1,26 +1,40 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './Catalog.module.css';
 import SearchInput from '../SearchInput/SearchInput';
 import CardsList from '../CardsList/CardsList';
 import Button from '../Button/Button';
 import { productsApi } from '../../../redux/services/ProductsService';
+import { AppDispatch, RootState } from '../../../redux/store';
+import { setLoadedProducts, setSkip } from '../../../redux/slices/catalogSlice';
 
 const Catalog = () => {
   const limit = 12;
-  const [skip, setSkip] = useState(0);
-  const [loadedProducts, setLoadedProducts] = useState(limit);
+  const dispatch = useDispatch<AppDispatch>();
+  const { loadedProducts, skip } = useSelector(
+    (state: RootState) => state.catalog
+  );
 
   const { data } = productsApi.useFetchAllProductsQuery({
     limit,
     skip,
   });
 
+  useEffect(() => {
+    if (data && loadedProducts.length === 0) {
+      dispatch(setLoadedProducts(data.products));
+      dispatch(setSkip(skip + limit));
+    }
+  }, [dispatch, loadedProducts, data, skip]);
+
   const totalProducts = data ? data.total : 0;
 
   const handleClick = () => {
-    setSkip((prev) => prev + 12);
-    setLoadedProducts((prev) => prev + limit);
+    if (data) {
+      dispatch(setLoadedProducts(data.products));
+      dispatch(setSkip(skip + limit));
+    }
   };
 
   return (
@@ -28,11 +42,11 @@ const Catalog = () => {
       <div className={styles.container}>
         <h2 className={styles.title}>Catalog</h2>
         <SearchInput />
-        <CardsList limit={limit} skip={skip} />
+        <CardsList loadedCards={loadedProducts} />
         <Button
           ariaLabel="show more"
           onClick={handleClick}
-          isDisabled={loadedProducts >= totalProducts}
+          isDisabled={loadedProducts.length >= totalProducts}
         >
           Show more
         </Button>

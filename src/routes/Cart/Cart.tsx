@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
 import { useEffect } from 'react';
 import { fetchCartsByUserId } from '../../redux/services/fetchCartsByUserId';
+// import { HelmetProvider } from 'react-helmet-async';
 
 const Cart = () => {
   const hardCodedId = '6';
@@ -31,6 +32,7 @@ const Cart = () => {
 
   return (
     <>
+      {/* <HelmetProvider> */}
       <Helmet>
         <title>My cart | Goods4you</title>
         <meta
@@ -49,6 +51,7 @@ const Cart = () => {
           <h2 className={styles.emtyCart}>No items</h2>
         )}
       </div>
+      {/* </HelmetProvider> */}
     </>
   );
 };

@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet';
+// import { HelmetProvider } from 'react-helmet-async';
 
 import styles from './ProductDetails.module.css';
 import data from '../../api/products.json';
@@ -11,6 +12,7 @@ const ProductDetails = () => {
 
   return (
     <>
+      {/* <HelmetProvider> */}
       <Helmet>
         <title>{card.title} | Goods4you</title>
         <meta
@@ -26,6 +28,7 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
+      {/* </HelmetProvider> */}
     </>
   );
 };
