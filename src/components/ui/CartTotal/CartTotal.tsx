@@ -3,8 +3,8 @@ import styles from './CartTotal.module.css';
 import { RootState } from '../../../redux/store';
 
 const CartTotal = () => {
-  const { cart } = useSelector((state: RootState) => state.cart);
-  const products = cart?.products ?? [];
+  const { carts } = useSelector((state: RootState) => state.cart);
+  const products = carts ? carts[0].products : [];
 
   const fullPrice = products.reduce((acc, cur) => cur.price + acc, 0);
   const fullDiscount = products.reduce(
@@ -18,7 +18,9 @@ const CartTotal = () => {
       <div className={styles.countBlock}>
         <div className={styles.row}>
           <span className={styles.countTitle}>Total count</span>
-          <span className={styles.countValue}>{cart?.totalProducts} items</span>
+          <span className={styles.countValue}>
+            {carts ? carts[0].totalProducts : 0} items
+          </span>
         </div>
         <div className={styles.row}>
           <span className={styles.priceTitle}>Price without discount</span>

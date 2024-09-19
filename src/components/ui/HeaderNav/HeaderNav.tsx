@@ -8,6 +8,7 @@ import { scrollToSection, toSection } from '../../../utils/scrollToSection';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../redux/store';
 import { fetchCartsByUserId } from '../../../redux/services/fetchCartsByUserId';
+import { hardCodedId } from '../../../constants';
 
 const HeaderNav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -16,8 +17,6 @@ const HeaderNav = () => {
   const location = useLocation();
   const [targetSection, setTargetSection] = useState<string | null>(null);
   const { carts } = useSelector((state: RootState) => state.cart);
-
-  const hardCodedId = '6';
 
   useEffect(() => {
     dispatch(fetchCartsByUserId(hardCodedId));

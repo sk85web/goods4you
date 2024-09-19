@@ -3,7 +3,7 @@ import StarIcon from '../../icons/StarIcon/StarIcon';
 import styles from './StarRating.module.css';
 
 interface StarRatingProps {
-  rating: string;
+  rating: number;
 }
 
 const totalStars = 5;

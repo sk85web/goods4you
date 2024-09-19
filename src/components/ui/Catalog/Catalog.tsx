@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './Catalog.module.css';
@@ -12,6 +12,7 @@ import {
   setLoadedProducts,
   setSkip,
 } from '../../../redux/slices/catalogSlice';
+import StateDisplay from '../StateDisplay/StateDisplay';
 
 const Catalog = () => {
   const limit = 12;
@@ -20,51 +21,68 @@ const Catalog = () => {
     (state: RootState) => state.catalog
   );
 
+  const [searchParam, setSearchParam] = useState('');
+
   const { data, isLoading, error } = productsApi.useFetchAllProductsQuery({
     limit,
     skip,
+    searchQuery: searchParam,
   });
+
+  useEffect(() => {
+    if (searchParam) {
+      dispatch(resetCatalog());
+    }
+  }, [searchParam, dispatch]);
 
   useEffect(() => {
     dispatch(resetCatalog());
   }, [dispatch]);
 
   useEffect(() => {
-    if (data && loadedProducts.length === 0) {
-      dispatch(setLoadedProducts(data.products));
-      dispatch(setSkip(limit + skip));
+    if (data) {
+      const newProducts = data.products.filter(
+        (newProduct) =>
+          !loadedProducts.some(
+            (loadedProduct) => loadedProduct.id === newProduct.id
+          )
+      );
+      if (newProducts.length > 0) {
+        dispatch(setLoadedProducts(newProducts));
+      }
     }
-  }, [dispatch, loadedProducts, data, skip]);
-
-  const totalProducts = data ? data.total : 0;
+  }, [data, dispatch, loadedProducts]);
 
   const handleClick = () => {
-    if (data) {
-      dispatch(setLoadedProducts(data.products));
-      dispatch(setSkip(skip + limit));
-    }
+    dispatch(setSkip(skip + limit));
   };
 
-  if (isLoading)
-    return (
-      <div className={styles.loading}>
-        <h3>Loading...</h3>
-      </div>
-    );
+  if (isLoading) return <StateDisplay status="loading" message="Loading..." />;
 
   if (error)
     return (
-      <div className={styles.error}>
-        <h3>Uoops! Something went wrong</h3>
-      </div>
+      <StateDisplay status="error" message="Uoops! Something went wrong" />
     );
+
+  if (!data) {
+    return <StateDisplay status="noData" message="There are no any products" />;
+  }
+
+  const totalProducts = data.total;
 
   return (
     <section className={styles.catalog} id="catalog">
       <div className={styles.container}>
         <h2 className={styles.title}>Catalog</h2>
-        <SearchInput />
-        <CardsList loadedCards={loadedProducts} />
+        <SearchInput onSearch={setSearchParam} />
+        {searchParam && data.products.length === 0 ? (
+          <div className={styles.loading}>
+            <h3>No search results</h3>
+          </div>
+        ) : (
+          <CardsList loadedCards={loadedProducts} />
+        )}
+
         <Button
           ariaLabel="show more"
           onClick={handleClick}

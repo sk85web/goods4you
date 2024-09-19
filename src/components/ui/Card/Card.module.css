@@ -89,6 +89,7 @@
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   cursor: pointer;
+  width: 40%;
 }
 
 .card-title {
