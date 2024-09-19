@@ -1,0 +1,17 @@
+.container {
+  max-width: 1190px;
+  margin: 0 auto;
+  padding: 48px 5px 162px;
+}
+
+.content {
+  display: flex;
+  gap: 40px;
+}
+
+@media screen and (max-width: 940px) {
+  .content {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
