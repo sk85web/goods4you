@@ -1,12 +1,13 @@
 import { Helmet } from 'react-helmet';
 import { HelmetProvider } from 'react-helmet-async';
+import { useParams } from 'react-router-dom';
 
 import styles from './ProductDetails.module.css';
 import ProductInfo from '../../components/ui/ProductInfo/ProductInfo';
 import Galery from '../../components/ui/Galery/Galery';
 import StateDisplay from '../../components/ui/StateDisplay/StateDisplay';
 import { productsApi } from '../../redux/services/ProductsService';
-import { useParams } from 'react-router-dom';
+import NotFoundPage from '../NotFoundPage/NotFoundPage';
 
 const ProductDetails = () => {
   const { id = '' } = useParams();
@@ -15,6 +16,11 @@ const ProductDetails = () => {
   });
 
   if (isLoading) return <StateDisplay status="loading" message="Loading..." />;
+
+  if (error && 'status' in error && error.status === 404) {
+    return <NotFoundPage />;
+  }
+
   if (error)
     return (
       <StateDisplay status="error" message="Uoops! Something went wrong" />
@@ -28,6 +34,8 @@ const ProductDetails = () => {
       />
     );
   }
+
+  console.log(data);
 
   return (
     <>

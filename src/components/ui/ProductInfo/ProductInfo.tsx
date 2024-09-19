@@ -4,6 +4,8 @@ import Discount from '../Discount/Discount';
 import { IProduct } from '../../../types/types';
 
 const ProductInfo = ({ card }: { card: IProduct }) => {
+  const meta = card.tags.join(', ');
+
   return (
     <div className={styles.info}>
       <div className={styles.header}>
@@ -12,7 +14,7 @@ const ProductInfo = ({ card }: { card: IProduct }) => {
           <div className={styles.stars}>
             <StarRating rating={card.rating} />
           </div>
-          <div className={styles.category}>{card.category}</div>
+          <div className={styles.category}>{meta}</div>
         </div>
       </div>
       <div className={styles.stock}>
@@ -29,6 +31,7 @@ const ProductInfo = ({ card }: { card: IProduct }) => {
       <Discount
         price={card.price}
         discountPercentage={card.discountPercentage}
+        id={card.id}
       />
     </div>
   );

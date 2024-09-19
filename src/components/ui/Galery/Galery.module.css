@@ -47,6 +47,16 @@
   max-width: 100%;
 }
 
+.btn {
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s linear;
+}
+
+.btn:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
 .miniSlider {
   display: none;
 }
