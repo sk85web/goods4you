@@ -33,14 +33,6 @@ const Discount: React.FC<DiscountProps> = ({
     }
   }, [carts, id]);
 
-  const decreaseQuantity = () => {
-    setCount((prev) => prev - 1);
-  };
-
-  const increaseQuantity = () => {
-    setCount((prev) => prev + 1);
-  };
-
   const addToCart = () => {
     setCount((prev) => prev + 1);
   };
@@ -68,11 +60,7 @@ const Discount: React.FC<DiscountProps> = ({
           children="Add to cart"
         />
       ) : (
-        <ShopCounter
-          count={count}
-          decreaseQuantity={decreaseQuantity}
-          increaseQuantity={increaseQuantity}
-        />
+        <ShopCounter count={count} setCount={setCount} />
       )}
     </div>
   );

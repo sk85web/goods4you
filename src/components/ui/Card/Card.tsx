@@ -7,8 +7,7 @@ import styles from './Card.module.css';
 import CartIcon from '../../icons/CartIcon/CartIcon';
 import ButtonWithIcon from '../ButtonWithIcon/ButtonWithIcon';
 import ShopCounter from '../ShopCounter/ShopCounter';
-import { RootState } from '../../../redux/store';
-import { AppDispatch } from '../../../redux/store';
+import { AppDispatch, RootState } from '../../../redux/store';
 import { fetchCartsByUserId } from '../../../redux/services/fetchCartsByUserId';
 import { hardCodedId } from '../../../constants';
 import { discountCounter } from '../../../utils/discountCounter';
@@ -46,16 +45,6 @@ const Card: React.FC<IProduct> = ({
     setCount((prev) => prev + 1);
   };
 
-  const decreaseQuantity = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setCount((prev) => prev - 1);
-  };
-
-  const increaseQuantity = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setCount((prev) => prev + 1);
-  };
-
   const priceWithDiscount = discountCounter(price, discountPercentage);
 
   return (
@@ -80,11 +69,7 @@ const Card: React.FC<IProduct> = ({
             onClick={handleAddToCart}
           />
         ) : (
-          <ShopCounter
-            count={count}
-            decreaseQuantity={decreaseQuantity}
-            increaseQuantity={increaseQuantity}
-          />
+          <ShopCounter count={count} setCount={setCount} />
         )}
       </div>
     </div>

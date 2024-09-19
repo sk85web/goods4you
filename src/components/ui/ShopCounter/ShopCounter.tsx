@@ -1,4 +1,5 @@
 import React from 'react';
+
 import MinusIcon from '../../icons/MinusIcon/MinusIcon';
 import PlusIcon from '../../icons/PlusIcon/PlusIcon';
 import ButtonWithIcon from '../ButtonWithIcon/ButtonWithIcon';
@@ -6,15 +7,22 @@ import styles from './ShopCounter.module.css';
 
 interface ShopCounterProps {
   count: number;
-  decreaseQuantity: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  increaseQuantity: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  setCount: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const ShopCounter: React.FC<ShopCounterProps> = ({
-  count,
-  decreaseQuantity,
-  increaseQuantity,
-}) => {
+const ShopCounter: React.FC<ShopCounterProps> = ({ count, setCount }) => {
+  const decreaseQuantity = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (count > 0) {
+      setCount((prev) => prev - 1);
+    }
+  };
+
+  const increaseQuantity = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCount((prev) => prev + 1);
+  };
+
   return (
     <div className={styles.container}>
       <ButtonWithIcon
