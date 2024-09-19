@@ -35,8 +35,6 @@ const ProductDetails = () => {
     );
   }
 
-  console.log(data);
-
   return (
     <>
       <HelmetProvider>

@@ -4,8 +4,15 @@ import ButtonLink from '../ButtonLink/ButtonLink';
 import SliderImageRow from '../SliderImageRow/SliderImageRow';
 import { useState } from 'react';
 
-const Slider = () => {
+interface SliderProps {
+  images: string[];
+  title: string;
+}
+
+const Slider: React.FC<SliderProps> = ({ images, title }) => {
   const [right, setRight] = useState(0);
+
+  const length = images.length * 70 - 70;
 
   const onMoveRight = () => {
     setRight((prev) => prev + 70);
@@ -24,12 +31,12 @@ const Slider = () => {
         ariaLabel="Move slider left"
       />
       <div className={styles.sliderWrapper}>
-        <SliderImageRow right={right} />
+        <SliderImageRow right={right} images={images} title={title} />
       </div>
       <ButtonLink
         children="Next"
         onClick={onMoveRight}
-        isDisabled={right === 350}
+        isDisabled={right === length}
         ariaLabel="Move slider right"
       />
     </div>

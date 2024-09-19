@@ -33,18 +33,16 @@ const Discount: React.FC<DiscountProps> = ({
     }
   }, [carts, id]);
 
-  const decreaseQuantity = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const decreaseQuantity = () => {
     setCount((prev) => prev - 1);
   };
 
-  const increaseQuantity = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const increaseQuantity = () => {
     setCount((prev) => prev + 1);
   };
 
   const addToCart = () => {
-    setCount((prev) => prev - 1);
+    setCount((prev) => prev + 1);
   };
 
   const priceWithDiscount = discountCounter(price, discountPercentage);

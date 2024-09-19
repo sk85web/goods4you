@@ -2,6 +2,7 @@ import styles from './Galery.module.css';
 import { IProduct } from '../../../types/types';
 import Slider from '../Slider/Slider';
 import { useState } from 'react';
+import ButtonWithIcon from '../ButtonWithIcon/ButtonWithIcon';
 
 const Galery = ({ card }: { card: IProduct }) => {
   const [mainPhoto, setMainPhoto] = useState(card.thumbnail);
@@ -19,18 +20,17 @@ const Galery = ({ card }: { card: IProduct }) => {
           <ul className={styles.slider}>
             {card.images.map((img, index) => (
               <li key={index}>
-                <button
-                  type="button"
+                <ButtonWithIcon
+                  ariaLabel="show photo"
+                  icon={<img src={img} alt="secondary photo" />}
                   onClick={() => handleSliderClick(img)}
                   className={styles.btn}
-                >
-                  <img src={img} alt="secondary photo" />
-                </button>
+                />
               </li>
             ))}
           </ul>
           <div className={styles.miniSlider}>
-            <Slider />
+            <Slider images={card.images} title={card.title} />
           </div>
         </>
       )}
