@@ -39,6 +39,4 @@ export const cartSlice = createSlice({
   },
 });
 
-// export const { increment, decrement, incrementByAmount } = counterSlice.actions
-
 export default cartSlice.reducer;

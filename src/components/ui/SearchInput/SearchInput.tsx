@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import styles from './SearchInput.module.css';
+import debounce from 'lodash.debounce';
 
 interface SearchInputProps {
   onSearch: (query: string) => void;
@@ -14,12 +15,9 @@ const SearchInput: React.FC<SearchInputProps> = ({ onSearch }) => {
   };
 
   useEffect(() => {
-    const searchProcess = setTimeout(() => {
+    debounce(() => {
       onSearch(inputValue);
     }, 500);
-    return () => {
-      clearTimeout(searchProcess);
-    };
   }, [inputValue, onSearch]);
 
   useEffect(() => {

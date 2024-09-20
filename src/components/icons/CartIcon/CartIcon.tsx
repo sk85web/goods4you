@@ -7,7 +7,7 @@ interface CartIconProps {
 
 const CartIcon: React.FC<CartIconProps> = ({
   isNotEmpty = false,
-  quantity,
+  quantity = 0,
 }) => {
   return (
     <div className={styles.iconWrapper}>
