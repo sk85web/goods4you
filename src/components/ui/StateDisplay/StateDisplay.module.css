@@ -9,6 +9,11 @@
   color: var(--gray-900);
 }
 
+.loading {
+  display: flex;
+  gap: 20px;
+}
+
 .error {
   color: var(--orange);
 }
