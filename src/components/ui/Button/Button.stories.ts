@@ -18,3 +18,11 @@ export const Primary: Story = {
     children: 'Add to cart',
   },
 };
+
+export const Disabled: Story = {
+  args: {
+    ariaLabel: 'just a button',
+    children: 'Add to cart',
+    isDisabled: true
+  },
+};
