@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './Catalog.module.css';
@@ -30,28 +30,25 @@ const Catalog = () => {
   });
 
   useEffect(() => {
-    if (searchParam) {
+    return () => {
       dispatch(resetCatalog());
-    }
-  }, [searchParam, dispatch]);
-
-  useEffect(() => {
-    dispatch(resetCatalog());
+    };
   }, [dispatch]);
 
   useEffect(() => {
     if (data) {
-      const newProducts = data.products.filter(
-        (newProduct) =>
-          !loadedProducts.some(
-            (loadedProduct) => loadedProduct.id === newProduct.id
-          )
-      );
-      if (newProducts.length > 0) {
-        dispatch(setLoadedProducts(newProducts));
-      }
+      dispatch(setLoadedProducts(data.products));
     }
-  }, [data, dispatch, loadedProducts]);
+  }, [data, dispatch]);
+
+  useEffect(() => {
+    if (searchParam) {
+      dispatch(resetCatalog());
+    }
+    return () => {
+      dispatch(resetCatalog());
+    };
+  }, [searchParam, dispatch]);
 
   const handleClick = () => {
     dispatch(setSkip(skip + limit));
