@@ -30,7 +30,7 @@ const ProductDetails = () => {
     return (
       <StateDisplay
         status="noData"
-        message="This product have not information yet"
+        message="This product has not information yet"
       />
     );
   }

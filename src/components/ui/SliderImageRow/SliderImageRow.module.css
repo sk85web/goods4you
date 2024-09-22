@@ -13,6 +13,6 @@ ul {
 li img {
   object-fit: cover;
   -o-object-fit: cover;
-  width: 70px;
-  height: 70px;
+  width: 200px;
+  height: 200px;
 }

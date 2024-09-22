@@ -7,19 +7,20 @@ import { useState } from 'react';
 interface SliderProps {
   images: string[];
   title: string;
+  onImageClick: (img: string) => void;
 }
 
-const Slider: React.FC<SliderProps> = ({ images, title }) => {
+const Slider: React.FC<SliderProps> = ({ images, title, onImageClick }) => {
   const [right, setRight] = useState(0);
 
-  const length = images.length * 70 - 70;
+  const length = images.length * 200 - 200;
 
   const onMoveRight = () => {
-    setRight((prev) => prev + 70);
+    setRight((prev) => prev + 200);
   };
 
   const onMoveLeft = () => {
-    setRight((prev) => prev - 70);
+    setRight((prev) => prev - 200);
   };
 
   return (
@@ -31,7 +32,12 @@ const Slider: React.FC<SliderProps> = ({ images, title }) => {
         ariaLabel="Move slider left"
       />
       <div className={styles.sliderWrapper}>
-        <SliderImageRow right={right} images={images} title={title} />
+        <SliderImageRow
+          right={right}
+          images={images}
+          title={title}
+          onImageClick={onImageClick}
+        />
       </div>
       <ButtonLink
         children="Next"

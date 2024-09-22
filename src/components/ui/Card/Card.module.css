@@ -89,7 +89,7 @@
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   cursor: pointer;
-  width: 40%;
+  width: 70%;
 }
 
 .card-title {
@@ -100,4 +100,11 @@
 .card-price {
   font-size: 18px;
   font-weight: 400;
+}
+
+.loaderWrapper {
+  height: 330px;
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 50px);
 }

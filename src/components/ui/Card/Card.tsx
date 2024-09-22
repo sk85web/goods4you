@@ -11,6 +11,7 @@ import { AppDispatch, RootState } from '../../../redux/store';
 import { fetchCartsByUserId } from '../../../redux/services/fetchCartsByUserId';
 import { hardCodedId } from '../../../constants';
 import { discountCounter } from '../../../utils/discountCounter';
+import { MoonLoader } from 'react-spinners';
 
 const Card: React.FC<IProduct> = ({
   id,
@@ -23,6 +24,7 @@ const Card: React.FC<IProduct> = ({
   const navigate = useNavigate();
   const { carts } = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch<AppDispatch>();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     dispatch(fetchCartsByUserId(hardCodedId));
@@ -45,16 +47,26 @@ const Card: React.FC<IProduct> = ({
     setCount((prev) => prev + 1);
   };
 
+  const handleLoading = () => {
+    setIsLoading(false);
+  };
+
   const priceWithDiscount = discountCounter(price, discountPercentage);
 
   return (
     <div className={styles.card} onClick={goToPtoduct}>
       <div className={styles.image}>
+        {isLoading && (
+          <div className={styles.loaderWrapper}>
+            <MoonLoader />
+          </div>
+        )}
         <img
           src={thumbnail}
           alt={title}
           srcSet={`${thumbnail} 1440w`}
           sizes="(max-width: 1440px) 100vw, 1440px"
+          onLoad={handleLoading}
         />
       </div>
       <div className={styles.content}>
