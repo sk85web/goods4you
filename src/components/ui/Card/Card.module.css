@@ -2,6 +2,7 @@
   border: 1px solid var(--gray-200);
   border-radius: 6px;
   overflow: hidden;
+  transition: all 0.2s linear;
 }
 
 .card a {
@@ -63,6 +64,12 @@
   -webkit-transition: opacity 0.5s linear;
   -o-transition: opacity 0.5s linear;
   transition: opacity 0.5s linear;
+}
+
+.card:hover {
+  -webkit-box-shadow: 0px 6px 10px 0px rgba(34, 60, 80, 0.25);
+  -moz-box-shadow: 0px 6px 10px 0px rgba(34, 60, 80, 0.25);
+  box-shadow: 0px 6px 10px 0px rgba(34, 60, 80, 0.25);
 }
 
 .card:hover .image:after {

@@ -1,9 +1,10 @@
+import { useState } from 'react';
+import { MoonLoader } from 'react-spinners';
+
 import styles from './Galery.module.css';
 import { IProduct } from '../../../types/types';
 import Slider from '../Slider/Slider';
-import { useState } from 'react';
 import ButtonWithIcon from '../ButtonWithIcon/ButtonWithIcon';
-import { MoonLoader } from 'react-spinners';
 
 const Galery = ({ card }: { card: IProduct }) => {
   const [mainPhoto, setMainPhoto] = useState(card.thumbnail);
