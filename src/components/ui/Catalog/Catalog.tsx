@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './Catalog.module.css';
-import SearchInput from '../SearchInput/SearchInput';
+import SearchInput from '../FormInput/FormInput';
 import CardsList from '../CardsList/CardsList';
 import Button from '../Button/Button';
 import { productsApi } from '../../../redux/services/ProductsService';

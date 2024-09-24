@@ -12,8 +12,6 @@ export interface ICard {
   ship: number;
 }
 
-export type IShortCard = Pick<ICard, 'title' | 'id' | 'image' | 'price'>;
-
 export interface IFaq {
   question: string;
   answer: string;
@@ -95,4 +93,16 @@ export interface FetchProductsData {
   total: number;
   skip: number;
   limit: number;
+}
+
+export interface IFetchUser {
+  id: number;
+  username: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  gender: string;
+  image: string;
+  accessToken: string;
+  refreshToken: string;
 }

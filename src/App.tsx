@@ -7,11 +7,18 @@ import ProductDetails from './routes/ProductDetails/ProductDetails';
 import Cart from './routes/Cart/Cart';
 import NotFoundPage from './routes/NotFoundPage/NotFoundPage';
 import Auth from './routes/Auth/Auth';
+import { ProtectedRoute } from './components/routes/ProtectedRoute';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <LandingPageLayout />,
+    element: (
+      <ProtectedRoute>
+        <LandingPageLayout />
+      </ProtectedRoute>
+    ),
     children: [
       {
         path: '/',
@@ -35,7 +42,12 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />
+      <ToastContainer position="top-right" autoClose={4000} />
+    </>
+  );
 };
 
 export default App;

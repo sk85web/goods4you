@@ -1,20 +1,21 @@
 import { Helmet } from 'react-helmet';
 import { HelmetProvider } from 'react-helmet-async';
-// import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Header from '../../components/layout/Header/Header';
 import AuthForm from '../../components/ui/AuthForm/AuthForm';
-// import { useEffect } from 'react';
+import styles from './Auth.module.css';
 
 const Auth = () => {
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  //   useEffect(() => {
-  //     if (localStorage.getItem('token')) {
-  //       console.log('token');
-  //       navigate('/');
-  //     }
-  //   }, [navigate]);
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      navigate('/');
+    }
+  }, [navigate]);
 
   return (
     <>
@@ -28,8 +29,7 @@ const Auth = () => {
         </Helmet>
 
         <Header />
-        <div>
-          <h1>Auth Page</h1>
+        <div className={styles.container}>
           <AuthForm />
         </div>
       </HelmetProvider>
