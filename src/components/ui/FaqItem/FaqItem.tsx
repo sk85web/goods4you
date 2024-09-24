@@ -22,6 +22,7 @@ const FaqItem: React.FC<IFaq> = ({ id, question, answer }) => {
         <h3 className={styles.question}>{question}</h3>
         <CloseIcon isClose={isOpen} />
       </button>
+
       <p
         id={`faq-answer-${id}`}
         className={`${styles.answer} ${

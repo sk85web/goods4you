@@ -4,13 +4,14 @@ import styles from './Header.module.css';
 import HeaderNav from '../../ui/HeaderNav/HeaderNav';
 
 const Header = () => {
+  const token = localStorage.getItem('token');
   return (
     <header>
       <div className={styles.container}>
         <div className={styles.logo}>
           <Link to="/">Goods4you</Link>
         </div>
-        <HeaderNav />
+        {token && <HeaderNav />}
       </div>
     </header>
   );
