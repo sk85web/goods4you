@@ -5,26 +5,16 @@ import styles from './HeaderNav.module.css';
 import CartIcon from '../../icons/CartIcon/CartIcon';
 import Burger from '../Burger/Burger';
 import { scrollToSection, toSection } from '../../../utils/scrollToSection';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../../redux/store';
-import { fetchCartsByUserId } from '../../../redux/services/fetchCartsByUserId';
-import { hardCodedId } from '../../../constants';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../redux/store';
 
 const HeaderNav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const location = useLocation();
   const [targetSection, setTargetSection] = useState<string | null>(null);
-  const { carts } = useSelector((state: RootState) => state.cart);
-
-  useEffect(() => {
-    dispatch(fetchCartsByUserId(hardCodedId));
-  }, [dispatch]);
-
-  const isCartExist = !!carts && carts.length > 0;
-
-  const quantity = carts ? carts[0].totalQuantity : 0;
+  const { cart } = useSelector((state: RootState) => state.cart);
+  const { userCredentials } = useSelector((state: RootState) => state.user);
 
   useEffect(() => {
     if (targetSection && location.pathname === '/') {
@@ -48,6 +38,10 @@ const HeaderNav = () => {
       document.body.style.overflow = '';
     };
   }, [menuOpen]);
+
+  const isCartExist = cart ? true : false;
+
+  const quantity = cart ? cart.totalQuantity : 0;
 
   return (
     <nav className="nav">
@@ -95,7 +89,7 @@ const HeaderNav = () => {
         </li>
         <li className={styles['nav-item']}>
           <NavLink to="#" aria-label="login">
-            Johnson Smith
+            {`${userCredentials?.firstName} ${userCredentials?.lastName}`}
           </NavLink>
         </li>
       </ul>

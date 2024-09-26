@@ -6,9 +6,10 @@ import { RootState } from '../../../redux/store';
 import { ICartProduct } from '../../../types/types';
 
 const CartForm = () => {
-  const { carts } = useSelector((state: RootState) => state.cart);
+  const { cart } = useSelector((state: RootState) => state.cart);
 
-  const products: ICartProduct[] = carts ? carts[0].products : [];
+  const products: ICartProduct[] = cart ? cart.products : [];
+
   return (
     <div className={styles.container}>
       <ul className={styles.cartList}>

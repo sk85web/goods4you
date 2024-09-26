@@ -26,14 +26,29 @@ const AuthForm = () => {
     setFormState((prev) => ({ ...prev, [key]: value }));
   };
 
+  const handleLogin = async (credentials: {
+    username: string;
+    password: string;
+  }) => {
+    try {
+      const userData = await loginUser(credentials).unwrap();
+      if (userData?.accessToken) {
+        localStorage.setItem('token', userData.accessToken);
+        toast.success('Login successful!');
+        dispatch(setUser(userData));
+        navigate('/');
+      }
+    } catch (error) {
+      toast.error('Login failed!');
+      console.error('Login error:', error);
+    }
+  };
+
   useEffect(() => {
     if (userFetchData) {
       dispatch(setUser(userFetchData));
-      localStorage.setItem('token', userFetchData.accessToken);
-      toast.success('Login succeful!');
-      navigate('/');
     }
-  }, [userFetchData, dispatch, navigate]);
+  }, [userFetchData, dispatch, isLoading]);
 
   useEffect(() => {
     if (error) {
@@ -43,7 +58,7 @@ const AuthForm = () => {
 
   const onSubmitForm = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await loginUser({
+    await handleLogin({
       username: formState.login,
       password: formState.password,
     });

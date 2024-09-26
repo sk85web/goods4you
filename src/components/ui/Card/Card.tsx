@@ -9,9 +9,9 @@ import ButtonWithIcon from '../ButtonWithIcon/ButtonWithIcon';
 import ShopCounter from '../ShopCounter/ShopCounter';
 import { AppDispatch, RootState } from '../../../redux/store';
 import { fetchCartsByUserId } from '../../../redux/services/fetchCartsByUserId';
-import { hardCodedId } from '../../../constants';
 import { discountCounter } from '../../../utils/discountCounter';
 import { MoonLoader } from 'react-spinners';
+import { addNewProductToCart } from '../../../utils/addNewProductToCart';
 
 const Card: React.FC<IProduct> = ({
   id,
@@ -19,24 +19,29 @@ const Card: React.FC<IProduct> = ({
   thumbnail,
   price,
   discountPercentage,
+  stock,
 }) => {
   const [count, setCount] = useState(0);
   const navigate = useNavigate();
-  const { carts } = useSelector((state: RootState) => state.cart);
+  const { cart, error } = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch<AppDispatch>();
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    dispatch(fetchCartsByUserId(hardCodedId));
-  }, [dispatch]);
+  const { userCredentials } = useSelector((state: RootState) => state.user);
 
   useEffect(() => {
-    if (carts) {
-      carts[0].products.map((product) => {
+    if (userCredentials && !cart) {
+      dispatch(fetchCartsByUserId(userCredentials.id));
+    }
+  }, [dispatch, userCredentials, cart]);
+
+  useEffect(() => {
+    if (cart) {
+      cart.products.forEach((product) => {
         if (product.id === id) setCount(product.quantity);
       });
     }
-  }, [carts, id]);
+  }, [cart, id]);
 
   const goToPtoduct = () => {
     navigate(`/product/${id}`);
@@ -44,7 +49,21 @@ const Card: React.FC<IProduct> = ({
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setCount((prev) => prev + 1);
+    setCount(1);
+
+    if (cart) {
+      addNewProductToCart({
+        cart,
+        id,
+        title,
+        price,
+        discountPercentage,
+        thumbnail,
+        error,
+        dispatch,
+        navigate,
+      });
+    }
   };
 
   const handleLoading = () => {
@@ -81,7 +100,16 @@ const Card: React.FC<IProduct> = ({
             onClick={handleAddToCart}
           />
         ) : (
-          <ShopCounter count={count} setCount={setCount} />
+          <ShopCounter
+            count={count}
+            setCount={setCount}
+            productId={id}
+            title={title}
+            price={price}
+            discountPercentage={discountPercentage}
+            thumbnail={thumbnail}
+            stock={stock}
+          />
         )}
       </div>
     </div>

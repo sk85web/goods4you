@@ -19,7 +19,7 @@ export interface IFaq {
 }
 
 export interface ICartProduct {
-  id: 144;
+  id: number;
   title: string;
   price: number;
   quantity: number;
@@ -30,7 +30,7 @@ export interface ICartProduct {
 }
 
 export interface ICart {
-  id: string;
+  id: number;
   products: ICartProduct[];
   total: number;
   discountedTotal: number;

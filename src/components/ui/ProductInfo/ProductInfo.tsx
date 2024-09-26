@@ -28,11 +28,7 @@ const ProductInfo = ({ card }: { card: IProduct }) => {
         <span>{card.shippingInformation}</span>
       </div>
 
-      <Discount
-        price={card.price}
-        discountPercentage={card.discountPercentage}
-        id={card.id}
-      />
+      <Discount {...card} />
     </div>
   );
 };

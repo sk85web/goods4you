@@ -15,11 +15,13 @@ const userSlice = createSlice({
   reducers: {
     setUser: (state, action: PayloadAction<IFetchUser>) => {
       state.userCredentials = action.payload;
-      console.log(state.userCredentials);
+    },
+    removeUser: (state) => {
+      state.userCredentials = null;
     },
   },
 });
 
-export const { setUser } = userSlice.actions;
+export const { setUser, removeUser } = userSlice.actions;
 
 export default userSlice.reducer;

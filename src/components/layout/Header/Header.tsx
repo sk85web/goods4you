@@ -5,6 +5,7 @@ import HeaderNav from '../../ui/HeaderNav/HeaderNav';
 
 const Header = () => {
   const token = localStorage.getItem('token');
+
   return (
     <header>
       <div className={styles.container}>

@@ -7,5 +7,6 @@ interface ProtectedRouteProps {
 
 export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   useAuth();
+
   return <>{children}</>;
 };
