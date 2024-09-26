@@ -15,6 +15,7 @@ interface RemoveExistedProductFromCart {
   price: number;
   discountPercentage: number;
   thumbnail: string;
+  fullDelete?: boolean;
 }
 
 export const removeExistedProductFromCart = ({
@@ -24,6 +25,7 @@ export const removeExistedProductFromCart = ({
   error,
   id,
   discountPercentage,
+  fullDelete = false,
 }: RemoveExistedProductFromCart) => {
   if (error === 'Unauthorized') {
     dispatch(removeUser());
@@ -40,14 +42,19 @@ export const removeExistedProductFromCart = ({
     const existingProduct = cart.products[existingProductIndex];
     const updatedProduct = {
       ...existingProduct,
-      quantity: existingProduct.quantity - 1,
-      total: existingProduct.price * (existingProduct.quantity - 1),
-      discountedTotal: discountCounter(
-        existingProduct.price * (existingProduct.quantity - 1),
-        discountPercentage
-      ),
+      quantity: fullDelete ? 0 : existingProduct.quantity - 1,
+      total: fullDelete
+        ? 0
+        : existingProduct.price * (existingProduct.quantity - 1),
+      discountedTotal: fullDelete
+        ? 0
+        : discountCounter(
+            existingProduct.price * (existingProduct.quantity - 1),
+            discountPercentage
+          ),
     };
 
+    console.log(updatedProduct);
     const updatedProducts = [...cart.products];
     updatedProducts[existingProductIndex] = updatedProduct;
 

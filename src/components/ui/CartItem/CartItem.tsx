@@ -11,23 +11,36 @@ import ButtonLink from '../ButtonLink/ButtonLink';
 import { RootState } from '../../../redux/store';
 import { addNewProductToCart } from '../../../utils/addNewProductToCart';
 import { AppDispatch } from '../../../redux/store';
+import { removeExistedProductFromCart } from '../../../utils/removeExistedProductFromCart';
 
 const CartItem = ({ product }: { product: ICartProduct }) => {
   const initialCount = product.quantity;
   const [count, setCount] = useState(initialCount);
-  const [deletedProduct, setDeletedProduct] = useState(false);
   const { cart, error } = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   const removeFromCart = () => {
-    setDeletedProduct((prev) => !prev);
+    setCount(0);
+    if (cart) {
+      removeExistedProductFromCart({
+        cart,
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        discountPercentage: product.discountPercentage,
+        thumbnail: product.thumbnail,
+        error,
+        dispatch,
+        navigate,
+        fullDelete: true,
+      });
+    }
   };
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation();
     setCount(1);
-    setDeletedProduct(false);
 
     if (cart) {
       addNewProductToCart({
@@ -46,7 +59,7 @@ const CartItem = ({ product }: { product: ICartProduct }) => {
 
   return (
     <div className={styles.container}>
-      <div className={`${styles.infoBlock} ${deletedProduct && styles.blur}`}>
+      <div className={`${styles.infoBlock} ${count === 0 && styles.blur}`}>
         <div className={styles.image}>
           <img src={product.thumbnail} alt={product.title} />
         </div>
@@ -58,7 +71,7 @@ const CartItem = ({ product }: { product: ICartProduct }) => {
         </div>
       </div>
       <div className={styles.btnBlock}>
-        {deletedProduct ? (
+        {count === 0 ? (
           <ButtonWithIcon
             icon={<CartIcon />}
             ariaLabel="Add to cart"
