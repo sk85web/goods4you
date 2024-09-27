@@ -16,11 +16,11 @@ export const fetchCartsByUserId = createAsyncThunk(
       }
     );
 
-    if (response.status === 401) {
-      localStorage.removeItem('token');
-      window.location.href = '/login';
-      throw new Error('Unauthorized');
-    }
+    // if (response.status === 401) {
+    //   localStorage.removeItem('token');
+    //   window.location.href = '/login';
+    //   throw new Error('Unauthorized');
+    // }
 
     const data: FetchCartsData = await response.json();
     return data.carts[0];
@@ -49,11 +49,11 @@ export const updateCart = createAsyncThunk(
       }),
     });
 
-    if (response.status === 401) {
-      localStorage.removeItem('token');
-      window.location.href = '/login';
-      throw new Error('Unauthorized');
-    }
+    // if (response.status === 401) {
+    //   localStorage.removeItem('token');
+    //   window.location.href = '/login';
+    //   throw new Error('Unauthorized');
+    // }
 
     const data: ICart = await response.json();
     return data;

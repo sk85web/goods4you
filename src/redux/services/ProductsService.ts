@@ -3,7 +3,16 @@ import { FetchProductsData, IProduct } from '../../types/types';
 
 export const productsApi = createApi({
   reducerPath: 'productsApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://dummyjson.com' }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: 'https://dummyjson.com/auth',
+    prepareHeaders: (headers) => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        headers.set('Authorization', `Bearer ${token}`);
+      }
+      return headers;
+    },
+  }),
   endpoints: (builder) => ({
     fetchAllProducts: builder.query<
       FetchProductsData,

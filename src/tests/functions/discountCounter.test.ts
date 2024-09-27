@@ -1,7 +1,7 @@
 import { it, expect, describe } from 'vitest';
 import { discountCounter } from '../../utils/discountCounter';
 
-describe('group', () => {
+describe('discounterCounter', () => {
   it('should return correct value', () => {
     const price = 100;
     const discount = 20;

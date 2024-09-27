@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 
 import { AppDispatch } from '../../../redux/store';
 import { setUser } from '../../../redux/slices/userSlice';
-import StateDisplay from '../StateDisplay/StateDisplay';
+// import StateDisplay from '../StateDisplay/StateDisplay';
 import { authApi } from '../../../redux/services/AuthService';
 import FormInput from '../FormInput/FormInput';
 import styles from './AuthForm.module.css';
@@ -63,8 +63,6 @@ const AuthForm = () => {
       password: formState.password,
     });
   };
-
-  if (isLoading) return <StateDisplay status="loading" message="Loading..." />;
 
   return (
     <>

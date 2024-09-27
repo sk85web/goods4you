@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
 import styles from './Catalog.module.css';
 import SearchInput from '../SearchInput/SearchInput';
@@ -21,7 +20,6 @@ const Catalog = () => {
   const { loadedProducts, skip } = useSelector(
     (state: RootState) => state.catalog
   );
-  const navigate = useNavigate();
   const [searchParam, setSearchParam] = useState('');
 
   const { data, isLoading, error } = productsApi.useFetchAllProductsQuery({
@@ -52,10 +50,7 @@ const Catalog = () => {
   }, [searchParam, dispatch]);
 
   const handleClick = () => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      dispatch(setSkip(skip + limit));
-    } else navigate('/login');
+    dispatch(setSkip(skip + limit));
   };
 
   if (isLoading) return <StateDisplay status="loading" message="Loading..." />;
