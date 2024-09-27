@@ -41,7 +41,7 @@ export const cartSlice = createSlice({
       state.cart = action.payload;
     });
     builder.addCase(updateCart.rejected, (state, action) => {
-      state.loading = false;
+      state.loading = true;
       state.error = action.error.message ?? null;
     });
   },

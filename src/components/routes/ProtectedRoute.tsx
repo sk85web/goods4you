@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
-import { useAuth } from '../../hooks/useAuth';
 import { MoonLoader } from 'react-spinners';
+
+import { useAuth } from '../../hooks/useAuth';
 import styles from './ProtectedRoute.module.css';
 
 interface ProtectedRouteProps {

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import styles from './Catalog.module.css';
 import SearchInput from '../SearchInput/SearchInput';
@@ -13,7 +14,6 @@ import {
   setSkip,
 } from '../../../redux/slices/catalogSlice';
 import StateDisplay from '../StateDisplay/StateDisplay';
-import { useNavigate } from 'react-router-dom';
 
 const Catalog = () => {
   const limit = 12;

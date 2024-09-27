@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useGetCurrentUserQuery } from '../redux/services/AuthService';
 import { useDispatch } from 'react-redux';
+
+import { useGetCurrentUserQuery } from '../redux/services/AuthService';
 import { AppDispatch } from '../redux/store';
 import { removeUser, setUser } from '../redux/slices/userSlice';
 

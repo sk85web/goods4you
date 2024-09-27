@@ -1,9 +1,9 @@
+import { NavigateFunction } from 'react-router-dom';
+
 import { ICart } from '../types/types';
 import { AppDispatch } from '../redux/store';
 import { updateCart } from '../redux/services/fetchCartsByUserId';
 import { discountCounter } from './discountCounter';
-import { NavigateFunction } from 'react-router-dom';
-// import { removeUser } from '../redux/slices/userSlice';
 
 interface RemoveExistedProductFromCart {
   cart: ICart;
@@ -21,19 +21,10 @@ interface RemoveExistedProductFromCart {
 export const removeExistedProductFromCart = ({
   cart,
   dispatch,
-  // navigate,
-  // error,
   id,
   discountPercentage,
   fullDelete = false,
 }: RemoveExistedProductFromCart) => {
-  // if (error === 'Unauthorized') {
-  //   dispatch(removeUser());
-  //   localStorage.removeItem('token');
-  //   navigate('/login');
-  //   return;
-  // }
-
   const existingProductIndex = cart.products.findIndex(
     (product) => product.id === id
   );

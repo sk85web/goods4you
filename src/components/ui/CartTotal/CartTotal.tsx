@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+
 import styles from './CartTotal.module.css';
 import { RootState } from '../../../redux/store';
 

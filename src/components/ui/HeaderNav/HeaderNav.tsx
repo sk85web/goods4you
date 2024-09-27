@@ -1,11 +1,11 @@
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 import styles from './HeaderNav.module.css';
 import CartIcon from '../../icons/CartIcon/CartIcon';
 import Burger from '../Burger/Burger';
 import { scrollToSection, toSection } from '../../../utils/scrollToSection';
-import { useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
 
 const HeaderNav = () => {
