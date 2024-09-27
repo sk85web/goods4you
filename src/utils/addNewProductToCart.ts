@@ -4,7 +4,7 @@ import { updateCart } from '../redux/services/fetchCartsByUserId';
 import { discountCounter } from './discountCounter';
 import { NavigateFunction } from 'react-router-dom';
 
-import { removeUser } from '../redux/slices/userSlice';
+// import { removeUser } from '../redux/slices/userSlice';
 
 interface AddNewProductToCartProps {
   cart: ICart;
@@ -21,20 +21,20 @@ interface AddNewProductToCartProps {
 export const addNewProductToCart = ({
   cart,
   dispatch,
-  navigate,
-  error,
+  // navigate,
+  // error,
   id,
   title,
   price,
   discountPercentage,
   thumbnail,
 }: AddNewProductToCartProps) => {
-  if (error === 'Unauthorized') {
-    dispatch(removeUser());
-    localStorage.removeItem('token');
-    navigate('/login');
-    return;
-  }
+  // if (error === 'Unauthorized') {
+  //   dispatch(removeUser());
+  //   localStorage.removeItem('token');
+  //   navigate('/login');
+  //   return;
+  // }
   const newCartProduct: ICartProduct = {
     id,
     title,

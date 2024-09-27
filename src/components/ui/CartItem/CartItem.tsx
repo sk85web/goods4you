@@ -12,6 +12,7 @@ import { RootState } from '../../../redux/store';
 import { addNewProductToCart } from '../../../utils/addNewProductToCart';
 import { AppDispatch } from '../../../redux/store';
 import { removeExistedProductFromCart } from '../../../utils/removeExistedProductFromCart';
+import { productsApi } from '../../../redux/services/ProductsService';
 
 const CartItem = ({ product }: { product: ICartProduct }) => {
   const initialCount = product.quantity;
@@ -19,6 +20,11 @@ const CartItem = ({ product }: { product: ICartProduct }) => {
   const { cart, error } = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+
+  const productId = product.id.toString();
+  const { data } = productsApi.useFetchSingleProductQuery({ id: productId });
+
+  const stock = data?.stock || 0;
 
   const removeFromCart = () => {
     setCount(0);
@@ -84,6 +90,7 @@ const CartItem = ({ product }: { product: ICartProduct }) => {
               setCount={setCount}
               productId={product.id}
               {...product}
+              stock={stock}
             />
             <div className={styles.deleteBtnParent}>
               <ButtonLink

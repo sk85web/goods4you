@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,6 +9,7 @@ import styles from './ShopCounter.module.css';
 import { RootState, AppDispatch } from '../../../redux/store';
 import { addExistedProductToCart } from '../../../utils/addExistedProductToCart';
 import { removeExistedProductFromCart } from '../../../utils/removeExistedProductFromCart';
+import debounce from 'lodash.debounce';
 
 interface ShopCounterProps {
   count: number;
@@ -36,47 +37,85 @@ const ShopCounter: React.FC<ShopCounterProps> = ({
   const { userCredentials } = useSelector((state: RootState) => state.user);
   const { cart, error } = useSelector((state: RootState) => state.cart);
 
+  const debouncedRemoveProduct = useMemo(
+    () =>
+      debounce(() => {
+        if (userCredentials && cart) {
+          removeExistedProductFromCart({
+            cart,
+            id: productId,
+            title,
+            price,
+            discountPercentage,
+            thumbnail,
+            error,
+            dispatch,
+            navigate,
+          });
+          setCount(count - 1);
+        }
+      }, 500),
+    [
+      userCredentials,
+      cart,
+      productId,
+      title,
+      price,
+      discountPercentage,
+      thumbnail,
+      error,
+      dispatch,
+      navigate,
+      count,
+      setCount,
+    ]
+  );
+
+  const debouncedAddProduct = useMemo(
+    () =>
+      debounce(() => {
+        if (userCredentials && cart) {
+          addExistedProductToCart({
+            cart,
+            id: productId,
+            title,
+            price,
+            discountPercentage,
+            thumbnail,
+            error,
+            dispatch,
+            navigate,
+          });
+          setCount(count + 1);
+        }
+      }, 500),
+    [
+      userCredentials,
+      cart,
+      productId,
+      title,
+      price,
+      discountPercentage,
+      thumbnail,
+      error,
+      dispatch,
+      navigate,
+      count,
+      setCount,
+    ]
+  );
+
   const decreaseQuantity = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (userCredentials && count > 0) {
-      const newCount = count - 1;
-      setCount(newCount);
-
-      if (cart) {
-        removeExistedProductFromCart({
-          cart,
-          id: productId,
-          title,
-          price,
-          discountPercentage,
-          thumbnail,
-          error,
-          dispatch,
-          navigate,
-        });
-      }
+    if (count > 0) {
+      debouncedRemoveProduct();
     }
   };
 
   const increaseQuantity = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (userCredentials) {
-      const newCount = count + 1;
-      setCount(newCount);
-
-      if (cart) {
-        addExistedProductToCart({
-          cart,
-          id: productId,
-          title,
-          price,
-          discountPercentage,
-          thumbnail,
-          error,
-          dispatch,
-          navigate,
-        });
-      }
+    if (count < stock!) {
+      debouncedAddProduct();
     }
   };
 

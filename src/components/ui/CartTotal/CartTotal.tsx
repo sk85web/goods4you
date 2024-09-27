@@ -9,12 +9,15 @@ const CartTotal = () => {
   const fullPrice = +products
     .reduce((acc, cur) => cur.price * cur.quantity + acc, 0)
     .toFixed(2);
+
   const fullDiscount = products.reduce(
     (acc, cur) => (cur.price * cur.discountPercentage) / 100 + acc,
     0
   );
   const discountPrice =
-    fullPrice > 0 ? fullPrice - Number(Math.floor(fullDiscount)) : 0;
+    fullPrice > 0
+      ? +(fullPrice - Number(Math.floor(fullDiscount))).toFixed(2)
+      : 0;
 
   const totalProductsQnt = products.filter(
     (product) => product.quantity !== 0

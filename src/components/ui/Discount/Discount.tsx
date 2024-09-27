@@ -7,30 +7,14 @@ import Button from '../Button/Button';
 import styles from './Discount.module.css';
 import { discountCounter } from '../../../utils/discountCounter';
 import ShopCounter from '../ShopCounter/ShopCounter';
-import { fetchCartsByUserId } from '../../../redux/services/fetchCartsByUserId';
 import { addNewProductToCart } from '../../../utils/addNewProductToCart';
 import { useNavigate } from 'react-router-dom';
 
-// type DiscountProps = Pick<IProduct, 'price' | 'discountPercentage' | 'id'>;
-
-const Discount = (
-  // price,
-  // discountPercentage,
-  // id,
-  product: IProduct
-) => {
+const Discount = (product: IProduct) => {
   const [count, setCount] = useState(0);
   const { cart, error } = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-
-  const { userCredentials } = useSelector((state: RootState) => state.user);
-
-  useEffect(() => {
-    if (userCredentials) {
-      dispatch(fetchCartsByUserId(userCredentials.id));
-    }
-  }, [dispatch, userCredentials]);
 
   useEffect(() => {
     if (cart) {

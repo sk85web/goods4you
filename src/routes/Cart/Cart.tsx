@@ -5,19 +5,16 @@ import { useSelector } from 'react-redux';
 import styles from './Cart.module.css';
 import CartForm from '../../components/ui/CartForm/CartForm';
 import CartTotal from '../../components/ui/CartTotal/CartTotal';
-import StateDisplay from '../../components/ui/StateDisplay/StateDisplay';
+// import StateDisplay from '../../components/ui/StateDisplay/StateDisplay';
 import { RootState } from '../../redux/store';
 
 const Cart = () => {
-  const { cart, loading, error } = useSelector(
-    (state: RootState) => state.cart
-  );
+  const { cart } = useSelector((state: RootState) => state.cart);
 
-  if (loading) return <StateDisplay status="loading" message="Loading..." />;
-  if (error)
-    return (
-      <StateDisplay status="error" message="Uoops! Something went wrong" />
-    );
+  // if (error)
+  //   return (
+  //     <StateDisplay status="error" message="Uoops! Something went wrong" />
+  //   );
 
   return (
     <HelmetProvider>

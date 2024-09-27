@@ -50,7 +50,6 @@ const Card: React.FC<IProduct> = ({
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation();
     setCount(1);
-
     if (cart) {
       addNewProductToCart({
         cart,

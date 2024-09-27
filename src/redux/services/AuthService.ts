@@ -24,7 +24,7 @@ export const authApi = createApi({
         body: {
           username,
           password,
-          expiresInMins: 60,
+          expiresInMins: 1,
         },
       }),
     }),

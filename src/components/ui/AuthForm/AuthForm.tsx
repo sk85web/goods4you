@@ -56,9 +56,9 @@ const AuthForm = () => {
     }
   }, [error]);
 
-  const onSubmitForm = async (e: React.SyntheticEvent<HTMLFormElement>) => {
+  const onSubmitForm = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await handleLogin({
+    handleLogin({
       username: formState.login,
       password: formState.password,
     });

@@ -13,6 +13,7 @@ import {
   setSkip,
 } from '../../../redux/slices/catalogSlice';
 import StateDisplay from '../StateDisplay/StateDisplay';
+import { useNavigate } from 'react-router-dom';
 
 const Catalog = () => {
   const limit = 12;
@@ -20,7 +21,7 @@ const Catalog = () => {
   const { loadedProducts, skip } = useSelector(
     (state: RootState) => state.catalog
   );
-
+  const navigate = useNavigate();
   const [searchParam, setSearchParam] = useState('');
 
   const { data, isLoading, error } = productsApi.useFetchAllProductsQuery({
@@ -51,7 +52,10 @@ const Catalog = () => {
   }, [searchParam, dispatch]);
 
   const handleClick = () => {
-    dispatch(setSkip(skip + limit));
+    const token = localStorage.getItem('token');
+    if (token) {
+      dispatch(setSkip(skip + limit));
+    } else navigate('/login');
   };
 
   if (isLoading) return <StateDisplay status="loading" message="Loading..." />;

@@ -14,14 +14,18 @@ export const useAuth = () => {
   useEffect(() => {
     const token = localStorage.getItem('token');
 
-    if (!token || error) {
+    if (!token) {
+      navigate('/login');
+    }
+
+    if (error) {
       dispatch(removeUser());
       localStorage.removeItem('token');
       navigate('/login');
     } else if (data) {
       dispatch(setUser(data));
     }
-  }, [data, error, navigate, dispatch, isLoading]);
+  }, [data, error, navigate, dispatch]);
 
   return { isLoading };
 };
