@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet';
 import { HelmetProvider } from 'react-helmet-async';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import styles from './ProductDetails.module.css';
 import ProductInfo from '../../components/ui/ProductInfo/ProductInfo';
@@ -11,6 +11,7 @@ import NotFoundPage from '../NotFoundPage/NotFoundPage';
 
 const ProductDetails = () => {
   const { id = '' } = useParams();
+  const navigate = useNavigate();
   const { data, isLoading, error } = productsApi.useFetchSingleProductQuery({
     id,
   });
@@ -21,10 +22,15 @@ const ProductDetails = () => {
     return <NotFoundPage />;
   }
 
-  if (error)
-    return (
-      <StateDisplay status="error" message="Uoops! Something went wrong" />
-    );
+  if (error) {
+    if ('status' in error && error.status === 401) {
+      localStorage.removeItem('token');
+      navigate('/login');
+    } else
+      return (
+        <StateDisplay status="error" message="Uoops! Something went wrong" />
+      );
+  }
 
   if (!data) {
     return (

@@ -6,9 +6,12 @@ import styles from './Cart.module.css';
 import CartForm from '../../components/ui/CartForm/CartForm';
 import CartTotal from '../../components/ui/CartTotal/CartTotal';
 import { RootState } from '../../redux/store';
+import StateDisplay from '../../components/ui/StateDisplay/StateDisplay';
 
 const Cart = () => {
-  const { cart } = useSelector((state: RootState) => state.cart);
+  const { cart, loading } = useSelector((state: RootState) => state.cart);
+
+  if (loading) return <StateDisplay status="loading" message="Loading..." />;
 
   return (
     <HelmetProvider>

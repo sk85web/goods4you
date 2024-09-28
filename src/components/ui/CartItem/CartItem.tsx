@@ -22,9 +22,16 @@ const CartItem = ({ product }: { product: ICartProduct }) => {
   const navigate = useNavigate();
 
   const productId = product.id.toString();
-  const { data } = productsApi.useFetchSingleProductQuery({ id: productId });
+  const { data, error: fetchError } = productsApi.useFetchSingleProductQuery({
+    id: productId,
+  });
 
   const stock = data?.stock || 0;
+
+  if (fetchError && 'status' in fetchError && fetchError.status === 401) {
+    localStorage.removeItem('token');
+    navigate('/login');
+  }
 
   const removeFromCart = () => {
     setCount(0);
