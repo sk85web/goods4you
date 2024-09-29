@@ -8,24 +8,27 @@ const CartTotal = () => {
   const products = cart ? cart.products : [];
 
   const fullPrice = +products
-    .reduce((acc, cur) => cur.price * cur.quantity + acc, 0)
+    .reduce((acc, { price, quantity }) => price * quantity + acc, 0)
     .toFixed(2);
 
-  const fullDiscount = products.reduce(
-    (acc, cur) => (cur.price * cur.discountPercentage) / 100 + acc,
-    0
-  );
-  const discountPrice =
-    fullPrice > 0
-      ? +(fullPrice - Number(Math.floor(fullDiscount))).toFixed(2)
-      : 0;
+  const discountPrice = +products
+    .reduce(
+      (acc, { price, quantity, discountPercentage }) =>
+        acc + price * (1 - discountPercentage / 100) * quantity,
+      0
+    )
+    .toFixed(2);
+
+  const totalProductsQnt = products.filter(
+    (product) => product.quantity !== 0
+  ).length;
 
   return (
     <div className={styles.common}>
       <div className={styles.countBlock}>
         <div className={styles.row}>
           <span className={styles.countTitle}>Total count</span>
-          <span className={styles.countValue}>{cart?.totalProducts} items</span>
+          <span className={styles.countValue}>{totalProductsQnt} items</span>
         </div>
         <div className={styles.row}>
           <span className={styles.priceTitle}>Price without discount</span>

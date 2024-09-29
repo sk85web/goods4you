@@ -22,7 +22,9 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     setDeletedProduct: (state, action: PayloadAction<ICartProduct>) => {
+      state.loading = true;
       state.deletedProducts = [...state.deletedProducts, { ...action.payload }];
+      state.loading = false;
     },
     removeDeletedProduct: (state, action: PayloadAction<ICartProduct>) => {
       state.deletedProducts = state.deletedProducts.filter(

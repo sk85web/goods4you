@@ -13,11 +13,15 @@ import { addNewProductToCart } from '../../../utils/addNewProductToCart';
 import { AppDispatch } from '../../../redux/store';
 import { removeExistedProductFromCart } from '../../../utils/removeExistedProductFromCart';
 import { productsApi } from '../../../redux/services/ProductsService';
+import { MoonLoader } from 'react-spinners';
+import { discountCounter } from '../../../utils/discountCounter';
 
 const CartItem = ({ product }: { product: ICartProduct }) => {
   const initialCount = product.quantity;
   const [count, setCount] = useState(initialCount);
-  const { cart, error } = useSelector((state: RootState) => state.cart);
+  const { cart, error, loading } = useSelector(
+    (state: RootState) => state.cart
+  );
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
@@ -27,6 +31,11 @@ const CartItem = ({ product }: { product: ICartProduct }) => {
   });
 
   const stock = data?.stock || 0;
+
+  const priceWithDiscount = discountCounter(
+    product.price,
+    product.discountPercentage
+  );
 
   if (fetchError && 'status' in fetchError && fetchError.status === 401) {
     localStorage.removeItem('token');
@@ -72,43 +81,51 @@ const CartItem = ({ product }: { product: ICartProduct }) => {
 
   return (
     <div className={styles.container}>
-      <div className={`${styles.infoBlock} ${count === 0 && styles.blur}`}>
-        <div className={styles.image}>
-          <img src={product.thumbnail} alt={product.title} />
+      {loading ? (
+        <div className={`${styles.infoBlock} ${styles.loader}`}>
+          <MoonLoader />
         </div>
-        <div className={styles.content}>
-          <Link to={`/product/${product.id}`}>
-            <span className={styles.title}>{product.title}</span>
-          </Link>
-          <span className={styles.price}>${product.price}</span>
-        </div>
-      </div>
-      <div className={styles.btnBlock}>
-        {count === 0 ? (
-          <ButtonWithIcon
-            icon={<CartIcon />}
-            ariaLabel="Add to cart"
-            onClick={handleAddToCart}
-          />
-        ) : (
-          <div className={styles.btnBlock}>
-            <ShopCounter
-              count={count}
-              setCount={setCount}
-              productId={product.id}
-              {...product}
-              stock={stock}
-            />
-            <div className={styles.deleteBtnParent}>
-              <ButtonLink
-                ariaLabel="Delete product from cart"
-                onClick={removeFromCart}
-                children="Delete"
-              />
+      ) : (
+        <>
+          <div className={`${styles.infoBlock} ${count === 0 && styles.blur}`}>
+            <div className={styles.image}>
+              <img src={product.thumbnail} alt={product.title} />
+            </div>
+            <div className={styles.content}>
+              <Link to={`/product/${product.id}`}>
+                <span className={styles.title}>{product.title}</span>
+              </Link>
+              <span className={styles.price}>${priceWithDiscount}</span>
             </div>
           </div>
-        )}
-      </div>
+          <div className={styles.btnBlock}>
+            {count === 0 ? (
+              <ButtonWithIcon
+                icon={<CartIcon />}
+                ariaLabel="Add to cart"
+                onClick={handleAddToCart}
+              />
+            ) : (
+              <div className={styles.btnBlock}>
+                <ShopCounter
+                  count={count}
+                  setCount={setCount}
+                  productId={product.id}
+                  {...product}
+                  stock={stock}
+                />
+                <div className={styles.deleteBtnParent}>
+                  <ButtonLink
+                    ariaLabel="Delete product from cart"
+                    onClick={removeFromCart}
+                    children="Delete"
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 };

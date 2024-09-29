@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import debounce from 'lodash.debounce';
 
 import MinusIcon from '../../icons/MinusIcon/MinusIcon';
 import PlusIcon from '../../icons/PlusIcon/PlusIcon';
@@ -9,7 +10,6 @@ import styles from './ShopCounter.module.css';
 import { RootState, AppDispatch } from '../../../redux/store';
 import { addExistedProductToCart } from '../../../utils/addExistedProductToCart';
 import { removeExistedProductFromCart } from '../../../utils/removeExistedProductFromCart';
-import debounce from 'lodash.debounce';
 
 interface ShopCounterProps {
   count: number;
