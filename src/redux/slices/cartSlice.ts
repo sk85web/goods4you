@@ -1,16 +1,18 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { ICart } from '../../types/types';
+import { ICart, ICartProduct } from '../../types/types';
 import { fetchCartsByUserId, updateCart } from '../services/fetchCartsByUserId';
 
 interface InitialStateProps {
   cart: ICart | null;
+  deletedProducts: ICartProduct[] | [];
   loading: boolean;
   error: string | null;
 }
 
 const initialState: InitialStateProps = {
   cart: null,
+  deletedProducts: [],
   loading: true,
   error: null,
 };
@@ -18,7 +20,17 @@ const initialState: InitialStateProps = {
 export const cartSlice = createSlice({
   name: 'cart',
   initialState,
-  reducers: {},
+  reducers: {
+    setDeletedProduct: (state, action: PayloadAction<ICartProduct>) => {
+      state.deletedProducts = [...state.deletedProducts, { ...action.payload }];
+    },
+    removeDeletedProduct: (state, action: PayloadAction<ICartProduct>) => {
+      state.deletedProducts = state.deletedProducts.filter(
+        (product) => product.id !== action.payload.id
+      );
+    },
+  },
+
   extraReducers: (builder) => {
     builder.addCase(fetchCartsByUserId.pending, (state) => {
       state.loading = true;
@@ -46,5 +58,7 @@ export const cartSlice = createSlice({
     });
   },
 });
+
+export const { setDeletedProduct, removeDeletedProduct } = cartSlice.actions;
 
 export default cartSlice.reducer;

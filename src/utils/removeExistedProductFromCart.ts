@@ -4,6 +4,7 @@ import { ICart } from '../types/types';
 import { AppDispatch } from '../redux/store';
 import { updateCart } from '../redux/services/fetchCartsByUserId';
 import { discountCounter } from './discountCounter';
+import { setDeletedProduct } from '../redux/slices/cartSlice';
 
 interface RemoveExistedProductFromCart {
   cart: ICart;
@@ -46,7 +47,13 @@ export const removeExistedProductFromCart = ({
     };
 
     const updatedProducts = [...cart.products];
-    updatedProducts[existingProductIndex] = updatedProduct;
+
+    if (!fullDelete) {
+      updatedProducts[existingProductIndex] = updatedProduct;
+    } else {
+      updatedProducts.splice(existingProductIndex, 1);
+      dispatch(setDeletedProduct(updatedProduct));
+    }
 
     dispatch(updateCart({ cartId: cart.id, products: updatedProducts }));
   }

@@ -4,6 +4,7 @@ import { ICart, ICartProduct } from '../types/types';
 import { AppDispatch } from '../redux/store';
 import { updateCart } from '../redux/services/fetchCartsByUserId';
 import { discountCounter } from './discountCounter';
+import { removeDeletedProduct } from '../redux/slices/cartSlice';
 
 interface AddNewProductToCartProps {
   cart: ICart;
@@ -40,4 +41,5 @@ export const addNewProductToCart = ({
   const updatedProducts = [...(cart.products || []), newCartProduct];
 
   dispatch(updateCart({ cartId: cart.id, products: updatedProducts }));
+  dispatch(removeDeletedProduct(newCartProduct));
 };

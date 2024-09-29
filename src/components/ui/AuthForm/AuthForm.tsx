@@ -65,6 +65,10 @@ const AuthForm = () => {
       username: formState.login,
       password: formState.password,
     });
+    setFormState({
+      login: '',
+      password: '',
+    });
   };
 
   return (
