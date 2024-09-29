@@ -1,0 +1,25 @@
+import { useSelector } from 'react-redux';
+
+import styles from './CartForm.module.css';
+import CartItem from '../CartItem/CartItem';
+import { RootState } from '../../../redux/store';
+import { ICartProduct } from '../../../types/types';
+
+const CartForm = () => {
+  const { carts } = useSelector((state: RootState) => state.cart);
+
+  const products: ICartProduct[] = carts ? carts[0].products : [];
+  return (
+    <div className={styles.container}>
+      <ul className={styles.cartList}>
+        {products.map((product) => (
+          <li key={product.id}>
+            <CartItem product={product} />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default CartForm;
