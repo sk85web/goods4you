@@ -23,9 +23,6 @@ const CartForm = () => {
     ? [...filteredProducts, ...deletedProducts]
     : products;
 
-  console.log(products);
-  console.log(displayProducts);
-
   return (
     <div className={styles.container}>
       <ul className={styles.cartList}>

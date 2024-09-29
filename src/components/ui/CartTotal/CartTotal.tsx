@@ -20,16 +20,12 @@ const CartTotal = () => {
       ? +(fullPrice - Number(Math.floor(fullDiscount))).toFixed(2)
       : 0;
 
-  const totalProductsQnt = products.filter(
-    (product) => product.quantity !== 0
-  ).length;
-
   return (
     <div className={styles.common}>
       <div className={styles.countBlock}>
         <div className={styles.row}>
           <span className={styles.countTitle}>Total count</span>
-          <span className={styles.countValue}>{totalProductsQnt} items</span>
+          <span className={styles.countValue}>{cart?.totalProducts} items</span>
         </div>
         <div className={styles.row}>
           <span className={styles.priceTitle}>Price without discount</span>
