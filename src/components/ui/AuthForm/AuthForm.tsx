@@ -5,7 +5,6 @@ import { toast } from 'react-toastify';
 
 import { AppDispatch } from '../../../redux/store';
 import { setUser } from '../../../redux/slices/userSlice';
-// import StateDisplay from '../StateDisplay/StateDisplay';
 import { authApi } from '../../../redux/services/AuthService';
 import FormInput from '../FormInput/FormInput';
 import styles from './AuthForm.module.css';
@@ -21,6 +20,10 @@ const AuthForm = () => {
 
   const [loginUser, { data: userFetchData, isLoading, error }] =
     authApi.useLoginUserMutation();
+
+  const invalidForm =
+    formState.login.trim().length === 0 ||
+    formState.password.trim().length === 0;
 
   const handleInputChange = (key: keyof typeof formState, value: string) => {
     setFormState((prev) => ({ ...prev, [key]: value }));
@@ -89,7 +92,7 @@ const AuthForm = () => {
             type="submit"
             ariaLabel="sign in"
             children="Sign in"
-            isDisabled={isLoading}
+            isDisabled={isLoading || invalidForm}
             className={styles.formBtn}
           />
         </div>
