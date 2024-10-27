@@ -11,35 +11,40 @@ import { ProtectedRoute } from './components/routes/ProtectedRoute';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: (
+        <ProtectedRoute>
+          <LandingPageLayout />
+        </ProtectedRoute>
+      ),
+      children: [
+        {
+          path: '/',
+          element: <Home />,
+        },
+        {
+          path: '/product/:id',
+          element: <ProductDetails />,
+        },
+        {
+          path: '/cart',
+          element: <Cart />,
+        },
+        { path: '*', element: <NotFoundPage /> },
+      ],
+    },
+    {
+      path: '/login',
+      element: <Auth />,
+    },
+  ],
   {
-    path: '/',
-    element: (
-      <ProtectedRoute>
-        <LandingPageLayout />
-      </ProtectedRoute>
-    ),
-    children: [
-      {
-        path: '/',
-        element: <Home />,
-      },
-      {
-        path: '/product/:id',
-        element: <ProductDetails />,
-      },
-      {
-        path: '/cart',
-        element: <Cart />,
-      },
-      { path: '*', element: <NotFoundPage /> },
-    ],
-  },
-  {
-    path: '/login',
-    element: <Auth />,
-  },
-]);
+    basename: '/goods4you',
+  }
+);
 
 const App = () => {
   return (
