@@ -1,0 +1,14 @@
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.sliderWrapper {
+  width: 70px;
+  overflow: hidden;
+}

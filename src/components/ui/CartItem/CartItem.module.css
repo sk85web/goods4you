@@ -1,0 +1,142 @@
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 12px;
+  border: 1px solid var(--gray-200);
+  border-radius: 4px;
+  background-color: var(--white);
+  -webkit-transition: background-color linear 0.2s;
+  -o-transition: background-color linear 0.2s;
+  transition: background-color linear 0.2s;
+  width: 688px;
+}
+
+.container:hover {
+  background-color: var(--gray-100);
+}
+
+.infoBlock {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 7px;
+  max-width: 362px;
+}
+
+.blur {
+  opacity: 0.6;
+}
+
+.image {
+  height: 100px;
+  width: 100px;
+  padding: 12px;
+}
+
+.image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  -o-object-fit: cover;
+}
+
+.content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+
+.content a {
+  text-decoration: none;
+  -webkit-text-decoration: none;
+  -webkit-text-decoration: none;
+  line-height: 22px;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--gray-900);
+}
+
+.title:hover {
+  text-decoration: underline;
+  -webkit-text-decoration: underline;
+}
+
+.price {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 26px;
+}
+
+.btnBlock {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 48px;
+}
+
+.deleteBtnParent {
+  margin: auto;
+}
+
+.deleteBtn {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: var(--gray-500);
+  font-size: 14px;
+  -o-transition: color 0.2s linear;
+  transition: color 0.2s linear;
+  -webkit-transition: color 0.2s linear;
+}
+
+.deleteBtn:hover {
+  color: var(--gray-900);
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    max-width: 700px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .infoBlock {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+
+  .btnBlock {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+}

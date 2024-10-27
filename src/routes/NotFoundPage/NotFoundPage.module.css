@@ -1,0 +1,30 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--gray-200);
+  height: 100vh;
+}
+
+.title {
+  font-size: 56px;
+  font-weight: 700;
+  color: var(--orange);
+}
+
+.subtitle {
+  margin-top: 16px;
+  font-size: 25px;
+  color: var(--gray-700);
+}
+
+.link {
+  margin-top: 6px;
+  display: inline-block;
+  font-size: 20px;
+  color: var(--violet);
+}
+
+.link:hover {
+  opacity: 0.8;
+}
