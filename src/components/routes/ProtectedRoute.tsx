@@ -1,6 +1,6 @@
 import { ReactNode, useEffect } from 'react';
 import { MoonLoader } from 'react-spinners';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { setUser } from '../../redux/slices/userSlice';
@@ -40,5 +40,7 @@ export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
 
   if (data) {
     return <>{children}</>;
+  } else {
+    return <Navigate to={'/login'} />;
   }
 };
