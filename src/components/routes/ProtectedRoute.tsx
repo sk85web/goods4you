@@ -1,6 +1,6 @@
 import { ReactNode, useEffect } from 'react';
 import { MoonLoader } from 'react-spinners';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { setUser } from '../../redux/slices/userSlice';
@@ -15,14 +15,18 @@ interface ProtectedRouteProps {
 export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
-  const { data, isLoading, error } = useGetCurrentUserQuery();
+  const { data, isLoading, error } = useGetCurrentUserQuery(undefined, {
+    skip: !localStorage.getItem('token'),
+  });
 
   useEffect(() => {
     if (data) {
       dispatch(setUser(data));
     } else if (error && 'status' in error && error.status === 401) {
-      localStorage.removeItem('token');
-      navigate('/login');
+      if (localStorage.getItem('token')) {
+        localStorage.removeItem('token');
+        navigate('/login');
+      }
     }
   }, [data, error, dispatch, navigate]);
 
@@ -36,8 +40,5 @@ export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
 
   if (data) {
     return <>{children}</>;
-  } else {
-    localStorage.removeItem('token');
-    return <Navigate to="/login" />;
   }
 };
