@@ -1,17 +1,5 @@
-.container {
-  max-width: 1190px;
-  margin: 0 auto;
-  padding: 52px 5px 44px;
-}
-
-.title {
-  text-align: left;
-  font-size: 36px;
-  font-weight: 700;
-  color: var(--gray-900);
-}
-
 .loading,
+.noData,
 .error {
   min-height: 850px;
   display: flex;
@@ -19,6 +7,11 @@
   align-items: center;
   font-size: 48px;
   color: var(--gray-900);
+}
+
+.loading {
+  display: flex;
+  gap: 20px;
 }
 
 .error {

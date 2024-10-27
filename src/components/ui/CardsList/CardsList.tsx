@@ -1,18 +1,16 @@
-import { IShortCard } from '../../../types/types';
 import Card from '../Card/Card';
 import styles from './CardsList.module.css';
+import React from 'react';
+import { IProduct } from '../../../types/types';
 
 interface CardsListProps {
-  cards: IShortCard[];
+  loadedCards: IProduct[];
 }
 
-const CardsList: React.FC<CardsListProps> = ({ cards }) => {
-  if (cards.length === 0) {
-    return <p className={styles.empty}>No Goods found.</p>;
-  }
+const CardsList: React.FC<CardsListProps> = ({ loadedCards }) => {
   return (
     <div className={styles.container}>
-      {cards.map((card) => (
+      {loadedCards.map((card) => (
         <Card key={card.id} {...card} />
       ))}
     </div>

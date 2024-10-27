@@ -7,6 +7,7 @@ interface ButtonWithIconProps {
   icon: React.ReactNode;
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   isDisabled?: boolean;
+  className?: string;
 }
 
 const ButtonWithIcon: React.FC<ButtonWithIconProps> = ({
@@ -14,10 +15,11 @@ const ButtonWithIcon: React.FC<ButtonWithIconProps> = ({
   ariaLabel,
   onClick,
   isDisabled = false,
+  className,
 }) => {
   return (
     <button
-      className={styles.btn}
+      className={`${styles.btn} ${className}`}
       aria-label={ariaLabel}
       onClick={onClick}
       disabled={isDisabled}

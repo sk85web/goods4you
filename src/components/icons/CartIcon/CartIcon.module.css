@@ -1,0 +1,19 @@
+.iconWrapper {
+  position: relative;
+}
+
+.cartQuantity {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  content: '';
+  font-weight: 400;
+  font-size: 6px;
+  width: 14px;
+  height: 14px;
+  border-radius: 7px;
+  background-color: var(--orange);
+  position: absolute;
+  right: -5px;
+  bottom: -3px;
+}

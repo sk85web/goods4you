@@ -5,12 +5,26 @@ import styles from './HeaderNav.module.css';
 import CartIcon from '../../icons/CartIcon/CartIcon';
 import Burger from '../Burger/Burger';
 import { scrollToSection, toSection } from '../../../utils/scrollToSection';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../../redux/store';
+import { fetchCartsByUserId } from '../../../redux/services/fetchCartsByUserId';
+import { hardCodedId } from '../../../constants';
 
 const HeaderNav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const location = useLocation();
   const [targetSection, setTargetSection] = useState<string | null>(null);
+  const { carts } = useSelector((state: RootState) => state.cart);
+
+  useEffect(() => {
+    dispatch(fetchCartsByUserId(hardCodedId));
+  }, [dispatch]);
+
+  const isCartExist = !!carts && carts.length > 0;
+
+  const quantity = carts ? carts[0].totalQuantity : 0;
 
   useEffect(() => {
     if (targetSection && location.pathname === '/') {
@@ -75,7 +89,7 @@ const HeaderNav = () => {
           <NavLink to="/cart" aria-label="cart">
             <div className={styles['nav-item-group']}>
               <span>Cart</span>
-              <CartIcon />
+              <CartIcon isNotEmpty={isCartExist} quantity={quantity} />
             </div>
           </NavLink>
         </li>

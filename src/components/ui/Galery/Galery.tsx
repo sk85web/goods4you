@@ -1,29 +1,63 @@
-import styles from './Galery.module.css';
-import { ICard } from '../../../types/types';
-import Slider from '../Slider/Slider';
-import secondaryPhoto from '../../../assets/photo.png';
+import { useState } from 'react';
+import { MoonLoader } from 'react-spinners';
 
-const Galery = ({ card }: { card: ICard }) => {
-  const allImages: { image: string; id: string }[] = new Array(6).fill({
-    image: card.image,
-    id: card.id,
-  });
-  console.log(card.image);
+import styles from './Galery.module.css';
+import { IProduct } from '../../../types/types';
+import Slider from '../Slider/Slider';
+import ButtonWithIcon from '../ButtonWithIcon/ButtonWithIcon';
+
+const Galery = ({ card }: { card: IProduct }) => {
+  const [mainPhoto, setMainPhoto] = useState(card.thumbnail);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const handleSliderClick = (src: string) => {
+    setMainPhoto(src);
+  };
+
+  const handleLoading = () => {
+    setIsLoading(false);
+  };
+
   return (
     <div className={styles.galery}>
       <div className={styles['main-photo']}>
-        <img src={card.image} alt="main photo" />
+        {isLoading && (
+          <div className={styles.loaderWrapper}>
+            <MoonLoader />
+          </div>
+        )}
+        <img src={mainPhoto} alt={card.title} onLoad={handleLoading} />
       </div>
-      <ul className={styles.slider}>
-        {allImages.map((img) => (
-          <li key={img.id}>
-            <img src={secondaryPhoto} alt="secondary photo" />
-          </li>
-        ))}
-      </ul>
-      <div className={styles.miniSlider}>
-        <Slider />
-      </div>
+      {card.images.length > 1 && (
+        <>
+          <ul className={styles.slider}>
+            {card.images.map((img, index) => (
+              <li key={index}>
+                <ButtonWithIcon
+                  ariaLabel="show photo"
+                  icon={
+                    <img
+                      src={img}
+                      alt={card.title}
+                      srcSet={`${img} 1440w`}
+                      sizes="(max-width: 550px) 100vw, 550px"
+                    />
+                  }
+                  onClick={() => handleSliderClick(img)}
+                  className={styles.btn}
+                />
+              </li>
+            ))}
+          </ul>
+          <div className={styles.miniSlider}>
+            <Slider
+              images={card.images}
+              title={card.title}
+              onImageClick={handleSliderClick}
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 };

@@ -2,6 +2,7 @@
   max-width: 1190px;
   margin: 0 auto;
   padding: 50px 5px 86px;
+  min-height: 850px;
 }
 
 .title {
@@ -17,6 +18,23 @@
   display: -ms-flexbox;
   display: flex;
   gap: 55px;
+}
+
+.loading {
+  min-height: 850px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 48px;
+  color: var(--gray-900);
+}
+
+.emtyCart {
+  font-weight: 600;
+  font-size: 24px;
+  color: var(--gray-500);
+  line-height: 36px;
+  text-align: center;
 }
 
 @media screen and (max-width: 1120px) {

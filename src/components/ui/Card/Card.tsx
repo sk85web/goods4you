@@ -1,15 +1,42 @@
 import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { IShortCard } from '../../../types/types';
+import { IProduct } from '../../../types/types';
 import styles from './Card.module.css';
 import CartIcon from '../../icons/CartIcon/CartIcon';
 import ButtonWithIcon from '../ButtonWithIcon/ButtonWithIcon';
-import { useState } from 'react';
 import ShopCounter from '../ShopCounter/ShopCounter';
+import { AppDispatch, RootState } from '../../../redux/store';
+import { fetchCartsByUserId } from '../../../redux/services/fetchCartsByUserId';
+import { hardCodedId } from '../../../constants';
+import { discountCounter } from '../../../utils/discountCounter';
+import { MoonLoader } from 'react-spinners';
 
-const Card: React.FC<IShortCard> = ({ id, title, image, price }) => {
+const Card: React.FC<IProduct> = ({
+  id,
+  title,
+  thumbnail,
+  price,
+  discountPercentage,
+}) => {
   const [count, setCount] = useState(0);
   const navigate = useNavigate();
+  const { carts } = useSelector((state: RootState) => state.cart);
+  const dispatch = useDispatch<AppDispatch>();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    dispatch(fetchCartsByUserId(hardCodedId));
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (carts) {
+      carts[0].products.map((product) => {
+        if (product.id === id) setCount(product.quantity);
+      });
+    }
+  }, [carts, id]);
 
   const goToPtoduct = () => {
     navigate(`/product/${id}`);
@@ -20,30 +47,32 @@ const Card: React.FC<IShortCard> = ({ id, title, image, price }) => {
     setCount((prev) => prev + 1);
   };
 
-  const decreaseQuantity = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setCount((prev) => prev - 1);
+  const handleLoading = () => {
+    setIsLoading(false);
   };
 
-  const increaseQuantity = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setCount((prev) => prev + 1);
-  };
+  const priceWithDiscount = discountCounter(price, discountPercentage);
 
   return (
     <div className={styles.card} onClick={goToPtoduct}>
       <div className={styles.image}>
+        {isLoading && (
+          <div className={styles.loaderWrapper}>
+            <MoonLoader />
+          </div>
+        )}
         <img
-          src={image}
+          src={thumbnail}
           alt={title}
-          srcSet={`${image} 1440w`}
+          srcSet={`${thumbnail} 1440w`}
           sizes="(max-width: 1440px) 100vw, 1440px"
+          onLoad={handleLoading}
         />
       </div>
       <div className={styles.content}>
         <div className={styles['card-info']}>
           <h3 className={styles['card-title']}>{title}</h3>
-          <span className={styles['card-price']}>${price}</span>
+          <span className={styles['card-price']}>${priceWithDiscount}</span>
         </div>
         {count === 0 ? (
           <ButtonWithIcon
@@ -52,11 +81,7 @@ const Card: React.FC<IShortCard> = ({ id, title, image, price }) => {
             onClick={handleAddToCart}
           />
         ) : (
-          <ShopCounter
-            count={count}
-            decreaseQuantity={decreaseQuantity}
-            increaseQuantity={increaseQuantity}
-          />
+          <ShopCounter count={count} setCount={setCount} />
         )}
       </div>
     </div>

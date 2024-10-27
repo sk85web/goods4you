@@ -35,22 +35,6 @@
   position: relative;
 }
 
-.nav-item-group:after {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  content: '99+';
-  font-weight: 400;
-  font-size: 6px;
-  width: 14px;
-  height: 14px;
-  border-radius: 7px;
-  background-color: var(--orange);
-  position: absolute;
-  right: -5px;
-  bottom: -7px;
-}
-
 @media (max-width: 768px) {
   .nav-list {
     display: none;
