@@ -1,4 +1,5 @@
 import { MoonLoader } from 'react-spinners';
+
 import styles from './StateDisplay.module.css';
 
 interface StateDisplayProps {

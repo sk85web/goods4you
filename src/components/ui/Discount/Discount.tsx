@@ -7,60 +7,74 @@ import Button from '../Button/Button';
 import styles from './Discount.module.css';
 import { discountCounter } from '../../../utils/discountCounter';
 import ShopCounter from '../ShopCounter/ShopCounter';
-import { hardCodedId } from '../../../constants';
-import { fetchCartsByUserId } from '../../../redux/services/fetchCartsByUserId';
+import { addNewProductToCart } from '../../../utils/addNewProductToCart';
+import { useNavigate } from 'react-router-dom';
 
-type DiscountProps = Pick<IProduct, 'price' | 'discountPercentage' | 'id'>;
-
-const Discount: React.FC<DiscountProps> = ({
-  price,
-  discountPercentage,
-  id,
-}) => {
+const Discount = (product: IProduct) => {
   const [count, setCount] = useState(0);
-  const { carts } = useSelector((state: RootState) => state.cart);
+  const { cart, error } = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(fetchCartsByUserId(hardCodedId));
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (carts) {
-      carts[0].products.map((product) => {
-        if (product.id === id) setCount(product.quantity);
+    if (cart) {
+      cart.products.map((cartProduct) => {
+        if (product.id === cartProduct.id) setCount(cartProduct.quantity);
       });
     }
-  }, [carts, id]);
+  }, [cart, product.id]);
 
-  const addToCart = () => {
+  const handleAddToCart = () => {
     setCount((prev) => prev + 1);
+
+    if (cart) {
+      addNewProductToCart({
+        cart,
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        discountPercentage: product.discountPercentage,
+        thumbnail: product.thumbnail,
+        error,
+        dispatch,
+        navigate,
+      });
+    }
   };
 
-  const priceWithDiscount = discountCounter(price, discountPercentage);
+  const priceWithDiscount = discountCounter(
+    product.price,
+    product.discountPercentage
+  );
 
   return (
     <div className={styles.container}>
       <div className={styles.prices}>
         <div className={styles['price-info']}>
           <span className={styles['final-price']}>${priceWithDiscount}</span>
-          <span className={styles.price}>${price}</span>
+          <span className={styles.price}>${product.price}</span>
         </div>
       </div>
 
       <div className={styles['discount-info']}>
         <span className={styles['discount-info-span']}>
-          Your discount: <strong>{discountPercentage}%</strong>
+          Your discount: <strong>{product.discountPercentage}%</strong>
         </span>
       </div>
       {count === 0 ? (
         <Button
+          type="button"
           ariaLabel="Add to cart"
-          onClick={addToCart}
+          onClick={handleAddToCart}
           children="Add to cart"
         />
       ) : (
-        <ShopCounter count={count} setCount={setCount} />
+        <ShopCounter
+          count={count}
+          setCount={setCount}
+          productId={product.id}
+          {...product}
+        />
       )}
     </div>
   );

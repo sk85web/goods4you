@@ -13,14 +13,15 @@ import {
   setSkip,
 } from '../../../redux/slices/catalogSlice';
 import StateDisplay from '../StateDisplay/StateDisplay';
+import { useNavigate } from 'react-router-dom';
 
 const Catalog = () => {
   const limit = 12;
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
   const { loadedProducts, skip } = useSelector(
     (state: RootState) => state.catalog
   );
-
   const [searchParam, setSearchParam] = useState('');
 
   const { data, isLoading, error } = productsApi.useFetchAllProductsQuery({
@@ -56,10 +57,15 @@ const Catalog = () => {
 
   if (isLoading) return <StateDisplay status="loading" message="Loading..." />;
 
-  if (error)
-    return (
-      <StateDisplay status="error" message="Uoops! Something went wrong" />
-    );
+  if (error) {
+    if ('status' in error && error.status === 401) {
+      localStorage.removeItem('token');
+      navigate('/login');
+    } else
+      return (
+        <StateDisplay status="error" message="Uoops! Something went wrong" />
+      );
+  }
 
   if (!data) {
     return <StateDisplay status="noData" message="There are no any products" />;
@@ -81,6 +87,7 @@ const Catalog = () => {
         )}
 
         <Button
+          type="button"
           ariaLabel="show more"
           onClick={handleClick}
           isDisabled={loadedProducts.length >= totalProducts}

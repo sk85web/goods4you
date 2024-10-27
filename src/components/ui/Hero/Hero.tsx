@@ -23,6 +23,7 @@ const Hero = () => {
           </p>
           <Button
             ariaLabel="Go to shopping"
+            type="button"
             onClick={() =>
               scrollToSection(
                 targetSection,
